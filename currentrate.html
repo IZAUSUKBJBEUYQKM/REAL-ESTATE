@@ -375,7 +375,7 @@
             // Populate property types, road types, and years
             const propertyTypes = [...new Set(propertyData.map(row => row.property_type))].filter(v => v).sort();
             const roadTypes = [...new Set(propertyData.map(row => row.road_type))].filter(v => v).sort();
-            const years = [...new Set(propertyData.map(row => row.year))].filter(v => v).sort((a, b) => a - b);
+            const years = [2025];
             
             populateSelect('propertyTypeSelect', propertyTypes);
             populateSelect('roadTypeSelect', roadTypes);
