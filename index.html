@@ -1,7 +1,9 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
     .carousel {
   margin-top: 100px; 
@@ -56,22 +58,54 @@
     object-fit: cover;
   }
 
+  .heart-icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+    color: #fff;
+    text-shadow: 0 0 3px rgba(0,0,0,0.5);
+    background: none !important;
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+  }
+
+  .heart-icon:hover {
+    transform: scale(1.2);
+  }
+
+  .heart-icon.active {
+    color: #ff4757;
+    transform: scale(1.1);
+  }
+
+  .heart-icon.active:hover {
+    transform: scale(1.3);
+  }
+
+  /* Notification animation */
+  @keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+  }
+
   .property-badge {
     position: absolute;
     top: 10px;
     left: 10px;
     font-size: 0.8rem;
     padding: 0.25rem 0.5rem;
-  }
-
-  .heart-icon {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: white;
-    border-radius: 50%;
-    padding: 5px;
-    cursor: pointer;
   }
 
   .property-details {
@@ -249,12 +283,253 @@
         }
 
         /* Responsive Design */
+        @media (max-width: 1200px) {
+            .properties-carousel-container {
+                margin-left: 30px !important;
+                margin-right: 30px !important;
+            }
+
+            .stats-container {
+                margin-left: 60px !important;
+                margin-right: 60px !important;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .properties-carousel-container {
+                margin-left: 20px !important;
+                margin-right: 20px !important;
+            }
+
+            .property-card {
+                margin-bottom: 15px !important;
+            }
+
+            .navbar-nav {
+                text-align: center !important;
+            }
+        }
+
         @media (max-width: 768px) {
             .footer-container {
-                grid-template-columns: 1fr; 
+                grid-template-columns: 1fr;
             }
             .footer-sections {
-                grid-template-columns: 1fr; 
+                grid-template-columns: 1fr;
+            }
+
+            /* Search box responsive */
+            .search-box {
+                position: relative !important;
+                top: auto !important;
+                left: auto !important;
+                transform: none !important;
+                margin: 20px auto !important;
+                width: 90% !important;
+                max-width: 400px !important;
+            }
+
+            .search-box input {
+                width: 100% !important;
+                margin-bottom: 10px !important;
+            }
+
+            .search-box .search-filters {
+                flex-direction: column !important;
+                gap: 10px !important;
+            }
+
+            .search-box .search-filters > div {
+                width: 100% !important;
+            }
+
+            /* Property cards responsive */
+            .property-details h5 {
+                margin-left: 0 !important;
+                text-align: left !important;
+            }
+
+            .property-details h6 {
+                margin-left: 0 !important;
+                text-align: left !important;
+            }
+
+            /* Statistics section responsive */
+            .stats-container {
+                flex-direction: column !important;
+                margin-left: 20px !important;
+                margin-right: 20px !important;
+            }
+
+            .stats-container > div {
+                border-right: none !important;
+                border-bottom: 1px solid #ccc !important;
+                padding-right: 0 !important;
+                padding-bottom: 20px !important;
+                margin-bottom: 20px !important;
+            }
+
+            .stats-container > div:last-child {
+                border-bottom: none !important;
+                margin-bottom: 0 !important;
+            }
+
+            /* Slider responsive */
+            #slider {
+                height: 50vw !important;
+            }
+
+            /* Navbar responsive */
+            .first-caption {
+                left: 5% !important;
+                right: 5% !important;
+            }
+
+            .first-caption h5, .first-caption h4, .first-caption h6 {
+                font-size: smaller !important;
+            }
+        }
+
+        /* Enhanced Carousel Controls */
+        .properties-carousel-container {
+            position: relative;
+        }
+
+        .synchronized-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            background-color: rgba(204, 119, 34, 0.8);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .synchronized-control:hover {
+            background-color: rgba(204, 119, 34, 1);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .synchronized-control.carousel-control-prev {
+            left: -25px;
+        }
+
+        .synchronized-control.carousel-control-next {
+            right: -25px;
+        }
+
+        .synchronized-control .carousel-control-prev-icon,
+        .synchronized-control .carousel-control-next-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        @media (max-width: 576px) {
+            .carousel-inner img {
+                height: 250px !important;
+            }
+
+            #slider {
+                height: 60vw !important;
+            }
+
+            .buy-button {
+                width: 45% !important;
+                font-size: 10px !important;
+            }
+
+            .synchronized-control {
+                width: 40px;
+                height: 40px;
+            }
+
+            .synchronized-control.carousel-control-prev {
+                left: -20px;
+            }
+
+            .synchronized-control.carousel-control-next {
+                right: -20px;
+            }
+
+            .properties-carousel-container {
+                margin-left: 20px !important;
+                margin-right: 20px !important;
+            }
+
+            /* Additional mobile improvements */
+            .property-info {
+                flex-direction: column !important;
+                gap: 5px !important;
+            }
+
+            .property-info > div {
+                width: 100% !important;
+            }
+
+            /* Improve how-to cards on mobile */
+            .card {
+                margin-bottom: 20px !important;
+            }
+
+            /* Better mobile navigation */
+            .offcanvas-body {
+                padding: 20px !important;
+            }
+
+            .nav-item {
+                margin: 10px 0 !important;
+            }
+
+            /* Mobile-friendly buttons */
+            .buy-button {
+                padding: 8px 12px !important;
+                margin: 5px !important;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 480px) {
+            .first-caption h5, .first-caption h4, .first-caption h6 {
+                font-size: 12px !important;
+            }
+
+            .property-card {
+                margin-bottom: 10px !important;
+            }
+
+            .synchronized-control {
+                width: 35px !important;
+                height: 35px !important;
+            }
+
+            .synchronized-control.carousel-control-prev {
+                left: -15px !important;
+            }
+
+            .synchronized-control.carousel-control-next {
+                right: -15px !important;
+            }
+
+            .search-box {
+                padding: 15px !important;
+                margin: 15px auto !important;
+            }
+
+            .stats-container {
+                margin-left: 10px !important;
+                margin-right: 10px !important;
+            }
+
+            .footer-logo img {
+                height: 120px !important;
+                padding: 20px !important;
+                padding-left: 40px !important;
             }
         }
 
@@ -262,12 +537,120 @@
 </style>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="search.js"></script>
+
+  <script>
+    // Wishlist functionality for index page
+    let wishlist = JSON.parse(localStorage.getItem('propertyWishlist')) || [];
+
+    document.addEventListener('DOMContentLoaded', function() {
+        updateHeartIcons();
+
+        // Add click event listeners to heart icons
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('heart-icon')) {
+                const propertyCard = e.target.closest('.property-card');
+                const propertyName = propertyCard.querySelector('h5').textContent;
+                const propertyId = propertyName.replace(/\s+/g, '-').toLowerCase();
+                const propertyImage = propertyCard.querySelector('img').src;
+                const propertyLocation = propertyCard.querySelector('p').textContent;
+
+                const propertyData = {
+                    id: propertyId,
+                    name: propertyName,
+                    price: 'Contact for Price',
+                    image: propertyImage,
+                    location: propertyLocation
+                };
+
+                if (wishlist.some(item => item.id === propertyId)) {
+                    removeFromWishlist(propertyId);
+                } else {
+                    addToWishlist(propertyData);
+                }
+            }
+        });
+    });
+
+    function updateHeartIcons() {
+        const heartIcons = document.querySelectorAll('.heart-icon');
+        heartIcons.forEach(heart => {
+            const propertyCard = heart.closest('.property-card');
+            const propertyName = propertyCard.querySelector('h5').textContent;
+            const propertyId = propertyName.replace(/\s+/g, '-').toLowerCase();
+
+            if (wishlist.some(item => item.id === propertyId)) {
+                heart.classList.add('active');
+                heart.textContent = '❤️';
+            } else {
+                heart.classList.remove('active');
+                heart.textContent = '🤍';
+            }
+        });
+    }
+
+    function addToWishlist(propertyData) {
+        if (!wishlist.some(item => item.id === propertyData.id)) {
+            wishlist.push(propertyData);
+            localStorage.setItem('propertyWishlist', JSON.stringify(wishlist));
+            updateHeartIcons();
+            showNotification(`${propertyData.name} added to wishlist!`, 'success');
+        }
+    }
+
+    function removeFromWishlist(propertyId) {
+        wishlist = wishlist.filter(item => item.id !== propertyId);
+        localStorage.setItem('propertyWishlist', JSON.stringify(wishlist));
+        updateHeartIcons();
+        showNotification(`Property removed from wishlist!`, 'info');
+    }
+
+    function showNotification(message, type) {
+        const notification = document.createElement('div');
+        notification.className = `alert position-fixed`;
+
+        // Use brand colors instead of Bootstrap defaults
+        let bgColor, textColor;
+        if (type === 'success') {
+            bgColor = '#CC7722';
+            textColor = 'white';
+        } else {
+            bgColor = 'rgb(106, 129, 133)';
+            textColor = 'white';
+        }
+
+        notification.style.cssText = `
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            min-width: 300px;
+            animation: slideIn 0.3s ease;
+            background-color: ${bgColor};
+            color: ${textColor};
+            border: none;
+            border-radius: 10px;
+            padding: 1rem;
+        `;
+        notification.innerHTML = `
+            <strong>${message}</strong>
+            <button type="button" class="btn-close" onclick="this.parentElement.remove()" style="filter: brightness(0) invert(1);"></button>
+        `;
+
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+            if (notification.parentElement) {
+                notification.remove();
+            }
+        }, 3000);
+    }
+  </script>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   
   
-  <title> REAL ESTATE </title>
+  <title> Next Worth </title>
  
      
   
@@ -305,12 +688,13 @@
       <div class="offcanvas-body d-flex flex-column flex-lg-row p-4 p-lg-0 ">
         <ul class="navbar-nav justify-content-center align-items-center fs-5 flex-grow-1 pe-3 ">
           <li class="nav-item mx-2 d-flex align-items-center"  >
+            
             <!-- home -->
             <i class="fa-solid fa-house "></i>
-            <a class="nav-link active fs-5" aria-current="page" href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" >Home</a>
+            <a class="nav-link active fs-5" aria-current="page" href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;"> Home</a>
           </li>
           <li class="nav-item mx-2 d-flex align-items-center px-2 py-1 rounded-4" > <i class="fa-solid fa-location-dot"></i>
-            <a class="nav-link text-secondary fs-5" href="#carouselExample">Vacation</a>
+            <a class="nav-link text-secondary fs-5" href="#propertiesCarousel">Vacation</a>
           </li>
           <li class="nav-item mx-2 d-flex align-items-center" >
             <i class="fa-solid fa-question"></i>
@@ -318,33 +702,25 @@
           </li>
           
 
-            <!--dropdown-->
+            <!--predict-->
             <li class="nav-item mx-2 d-flex align-items-center" >
-            <i class="fa-brands fa-gg"></i> 
-
-        <select class="form-select currency-dropdown border border-0 bg-transparent  text-secondary fs-5" aria-label="Currency" > 
-          <option selected disabled style="background-color: rgba(230, 230, 230);"> Currency</option>
-          <option value="usd">USD</option>
-          <option value="eur">EUR</option>
-          <option value="inr">INR</option>
-        </select>
+            <i class="fa-solid fa-chart-simple"></i>
+            <a class="nav-link text-secondary fs-5" href="predict-prices.html">Predict</a>
       </li>
 
       <li class="nav-item mx-2 d-flex align-items-center" >
-        <i class="fa-solid fa-font"></i>
-        <select class="form-select currency-dropdown border border-0 bg-transparent text-secondary fs-5" aria-label="Currency">
-          <option selected disabled style="background-color: rgba(230, 230, 230);">  Language</option>
-          <option value="usd">English</option>
-          <option value="eur">Hindi</option>
-        </select>
+        <i class="fa-solid fa-heart"></i>
+        <a class="nav-link text-secondary fs-5" href="wishlist.html" id="wishlistLink">
+          Wishlist
+        </a>
       </li>
             <!--dropdown -->
 
                   
            </ul>
         <div class="d-flex  flex-column flex-lg-row justify-content-center  align-items-center gap-4">
-          <a href="#signup" class="text-black d-flex align-items-center px-3 py-1 rounded-4 " style="text-decoration: none; background-color: beige;"><i class="fa-regular fa-user"></i>&emsp;sign up </a>
-          <a href="#add" class="text-white text-decoration-none px-3 py-1 rounded-4" style="background-color:#CC7722;">Post a free add </a>
+          <a href="#" class="text-black d-flex align-items-center px-3 py-1 rounded-4" style="text-decoration: none; background-color: beige;" data-bs-toggle="modal" data-bs-target="#signupModal"><i class="fa-regular fa-user"></i>&emsp;sign up </a>
+          <a href="post.html" class="text-white text-decoration-none px-3 py-1 rounded-4" style="background-color:#CC7722;">Post a free add </a>
         </div>
       </div>
     </div>
@@ -360,7 +736,7 @@
       <img src="house2.jpg" class="d-block w-100" alt="property image">
       <div class="carousel-caption first-caption d-none d-md-block">
         <h5>Meet your dream home with</h5>
-        <h4> <b>Estate Agent Power</b></h4>
+        <h4> <b>Next Worth</b></h4>
         <br>
         <h6> One-stop destination for the best property dealers</h6>
       </div>
@@ -369,7 +745,7 @@
       <img src="house4.jpg" class="d-block w-100" alt="property image">
       <div class="carousel-caption first-caption d-none d-md-block">
         <h5>Meet your dream home with</h5>
-        <h4> <b>Estate Agent Power</b></h4>
+        <h4> <b>Next Worth</b></h4>
         <br>
         <h6> One-stop destination for the best property dealers</h6>
       </div>
@@ -378,7 +754,7 @@
       <img src="house1.jpg" class="d-block w-100" alt="property image">
       <div class="carousel-caption  first-caption d-none d-md-block">
         <h5>Meet your dream home with</h5>
-        <h4> <b>Estate Agent Power</b></h4>
+        <h4> <b>Next Worth</b></h4>
         <br>
         <h6> One-stop destination for the best property dealers</h6>
       </div>
@@ -400,44 +776,40 @@
 
 <!-- searchbox-->
 <div class="search-box" style="position: absolute; top: 80%; left: 50%;
- transform: translate(-50%, -50%); 
+ transform: translate(-50%, -50%);
  background-color: rgba(242, 242, 242,0.95);
   padding: 20px; border-radius: 10px; display: flex; flex-direction: column; ">
-   <div ><button class="buy-button" >BUY</button> &emsp;&emsp; <button class="buy-button" >RENT</button> <br></div>
+   <div><button class="buy-button" id="buyButton">BUY</button> &emsp;&emsp; <button class="buy-button" id="rentButton">RENT</button> <br></div>
    <br>
-    <div><input type="text" placeholder="Address, postcode, neighbourhood" style="padding: 10px; width: 350px; margin-right: 10px; border: 1px solid #ccc; border-radius: 20px; color: gray; font-size: 15px; background-color: transparent; ">
-    <button style="padding: 10px 20px; background-color: #CC7722; border: none; color: white; border-radius: 20px; font-size:15px">Search</button> </div>
+    <div><input type="text" id="searchInput" placeholder="Address, postcode, neighbourhood" style="padding: 10px; width: 350px; margin-right: 10px; border: 1px solid #ccc; border-radius: 20px; color: gray; font-size: 15px; background-color: transparent; ">
+    <button id="searchButton" style="padding: 10px 20px; background-color: #CC7722; border: none; color: white; border-radius: 20px; font-size:15px">Search</button> </div>
     <br>
 
-    <div style="display: flex; gap:1px; justify-content: space-between;">
+    <div class="search-filters" style="display: flex; gap:1px; justify-content: space-between;">
 
     <div style="width: 125px; border-radius: 15px; background-color: none; display: flex; align-items: center; padding: 3px 7px; cursor: pointer; border: 1px solid #d0d7de; color:gray; ">
-        <i class="fa-solid fa-magnifying-glass" style="margin-right: 4px; font-size: 12px;"></i> 
-        <select style="border: none; outline: none; width: 100%; cursor: pointer; background-color: transparent; font-size: 12px; color: gray;">
-            <option selected disabled>Property type</option>
-            <option value="usd">Residential</option>
-            <option value="eur">Commercial</option>
-            <option value="inr">Land/Plot</option>
+        <i class="fa-solid fa-magnifying-glass" style="margin-right: 4px; font-size: 12px;"></i>
+        <select id="propertyTypeSelect" style="border: none; outline: none; width: 100%; cursor: pointer; background-color: transparent; font-size: 12px; color: gray;">
+            <option value="" selected disabled>Property type</option>
+            <option value="residential">Residential</option>
+            <option value="commercial">Commercial</option>
         </select>
     </div>
 
-    <div style="width: 108px; border-radius: 15px; background-color: none; display: flex; align-items: center; padding: 3px 7px; cursor: pointer; border: 1px solid #d0d7de; color:gray; ">
-        <i class="fa-solid fa-bed" style="margin-right: 4px; font-size: 12px;"></i> 
-        <select style="border: none; outline: none; width: 100%; cursor: pointer; background-color: transparent; font-size: 12px; color: gray;">
-            <option selected disabled>Bedrooms</option>
-            <option value="usd">1 bedroom</option>
-            <option value="eur">2 bedrooms</option>
-            <option value="inr">3+ bedrooms</option>
+    <div style="width: 120px; border-radius: 15px; background-color: none; display: flex; align-items: center; padding: 3px 7px; cursor: pointer; border: 1px solid #d0d7de; color:gray; ">
+        <i class="fa-solid fa-building" style="margin-right: 4px; font-size: 12px;"></i>
+        <select id="propertyTypeSelect" style="border: none; outline: none; width: 100%; cursor: pointer; background-color: transparent; font-size: 12px; color: gray;">
+            <option value="" selected disabled>Road Type</option>
+            <option value="residential">Front side</option>
+            <option value="commercial">Inner side</option>
         </select>
     </div>
 
     <div style="width: 100px; border-radius: 15px; background-color: none; display: flex; align-items: center; padding: 3px 7px; cursor: pointer; border: 1px solid #d0d7de; color:gray; ">
-        <i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px;"></i> 
-        <select style="border: none; outline: none; width: 100%; cursor: pointer; background-color: transparent; font-size: 12px; color: gray;">
-            <option selected disabled>Country</option>
-            <option value="usd">United States</option>
-            <option value="eur">Canada</option>
-            <option value="inr">India</option>
+        <i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px;"></i>
+        <select id="districtSelect" style="border: none; outline: none; width: 100%; cursor: pointer; background-color: transparent; font-size: 12px; color: gray;">
+            <option value="" selected disabled>District</option>
+            <option value="srinagar">Srinagar</option>
         </select>
     </div>
 
@@ -447,69 +819,75 @@
   border-radius: 15px;
   padding: 5px 12px;
   background-color: transparent;
-  color: #3181ff; /* Blue color */
+  color: #CC7722; /* Brand color */
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.3s ease, border-color 0.3s ease;">
-  <button style=" background-color: transparent; border:none; color: #3181ff;" >
+  <button id="allFiltersButton" style=" background-color: transparent; border:none; color: #CC7722;" >
    <i class="fa-solid fa-sliders" style="margin-right: 4px; font-size: 12px;"></i>  All Filters
     </button>
     </div>
 </div>
   </div> 
   
-  <a href="#" style="float: right;  margin-top: 70px; margin-right: 30px; text-decoration: none; color:#CC7722; font-weight: bold; ">
+  <a href="properties.html" style="float: right;  margin-top: 70px; margin-right: 30px; text-decoration: none; color:#CC7722; font-weight: bold; ">
   View More</a>
 
   <h2 style="margin-left: 50px; margin-top: 60px; color:rgb(106, 129, 133)"><b> Explore </b></h2>
   
   <h2 style="margin-left: 50px; margin-top: 10px; color:#CC7722;"><b> Prime Properties </b></h2>
 
-<!-- Carousel 1 -->
-<!--row1-->
-<div id="carouselExample" class="carousel slide" data-bs-ride="carousel" style="margin-left: 50px; margin-right:50px">
-  <div class="carousel-inner">
-  <div class="carousel-item active">
-  <div class="row">
-  <!-- Card 1 -->
-  <div class="col-sm-6 col-md-4">
-  <div class="property-card">
-  <img src="card1.jpg" class="img-fluid" alt="Liverpool Property" style="border-radius: 20px; padding:8px">
-            <span class="badge bg-danger property-badge">SOLD</span>
-            <span class="heart-icon">❤️</span>
-            <div class="property-details">
-              <h5>Liverpool Property</h5>
-              <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722; "></i>11 League,Liverpool,UK L10 INH</p>
-              <div class="property-info" >
-                <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-bed" style="margin-right: 4px; font-size: 12px; color:#CC7722;padding: 4px;"></i> 3 </button> </div>
-                <div ><button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-bath" style="margin-right: 4px; font-size: 12px; color:#CC7722; padding: 4px;"></i> 2 </button></div>
-                <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"> <i class="fa-solid fa-chart-area" style="margin-right: 4px; font-size: 12px;color:#CC7722; padding: 4px;"></i> 250 sqft </button> </div>
+<!-- Combined Properties Carousel -->
+<div id="propertiesCarousel" class="properties-carousel-container" style="margin-left: 50px; margin-right:50px; position: relative;">
+
+  <!-- Row 1 -->
+  <div id="carouselProperties1" class="carousel slide" data-bs-interval="false">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="row">
+          <!-- Card 1 -->
+          <div class="col-sm-6 col-md-4">
+            <div class="property-card">
+              <img src="card1.jpg" class="img-fluid" alt="Residential Land in Soura" style="border-radius: 20px; padding:8px">
+              <span class="badge bg-success property-badge">ON SALE</span>
+              <span class="heart-icon">🤍</span>
+              <div class="property-details">
+                <h5>Residential Land in Soura</h5>
+                <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722; "></i>Soura, Edigah, Srinagar</p>
+                <div class="property-info" >
+                  <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-home" style="margin-right: 4px; font-size: 12px; color:#CC7722;padding: 4px;"></i> Residential </button> </div>
+                  <div ><button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-road" style="margin-right: 4px; font-size: 12px; color:#CC7722; padding: 4px;"></i> Front Side </button></div>
+                  <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"> <i class="fa-solid fa-calendar" style="margin-right: 4px; font-size: 12px;color:#CC7722; padding: 4px;"></i> 2025 </button> </div>
+                </div>
+                <hr style=" color:gray">
+                <div class="property-price text-end">
+                  <h5>₹4.85 Lakhs</h5>
+                  <h6>₹485,000</h6>
+                </div>
               </div>
-              <hr style=" color:gray">
-              <h5 style="margin-left: 250px;">$410,124</h5>
-              <h6 style="margin-left: 280px;"> &#8364;410,124</h6>
             </div>
           </div>
-        </div>
         
         <!-- Card 2 -->
         <div class="col-sm-6 col-md-4">
           <div class="property-card">
-            <img src="card2.jpg" class="img-fluid" alt="Oasis View Residence" style="border-radius: 20px; padding:8px">
+            <img src="card2.jpg" class="img-fluid" alt="Commercial Land in Alamgari Bazar" style="border-radius: 20px; padding:8px">
             <span class="badge bg-success property-badge">ON SALE</span>
-            <span class="heart-icon">❤️</span>
+            <span class="heart-icon">🤍</span>
             <div class="property-details">
-              <h5>Oasis View Residence</h5>
-               <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722; "></i>Jumerah Beach Road,Dubai,UAE</p>
+              <h5>Commercial Land in Alamgari Bazar</h5>
+               <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722; "></i>Alamgari Bazar, Edigah, Srinagar</p>
               <div class="property-info" >
-                <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-bed" style="margin-right: 4px; font-size: 12px; color:#CC7722;padding: 4px;"></i> 3 </button> </div>
-                <div ><button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-bath" style="margin-right: 4px; font-size: 12px; color:#CC7722; padding: 4px;"></i> 2 </button></div>
-                <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"> <i class="fa-solid fa-chart-area" style="margin-right: 4px; font-size: 12px;color:#CC7722; padding: 4px;"></i> 250 sqft </button> </div>
+                <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-building" style="margin-right: 4px; font-size: 12px; color:#CC7722;padding: 4px;"></i> Commercial </button> </div>
+                <div ><button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-road" style="margin-right: 4px; font-size: 12px; color:#CC7722; padding: 4px;"></i> Front Side </button></div>
+                <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"> <i class="fa-solid fa-calendar" style="margin-right: 4px; font-size: 12px;color:#CC7722; padding: 4px;"></i> 2025 </button> </div>
               </div>
               <hr style=" color:gray">
-              <h5 style="margin-left: 250px;">$410,124</h5>
-              <h6 style="margin-left: 280px;"> &#8364;410,124</h6>
+              <div class="property-price text-end">
+                <h5>₹6.20 Lakhs</h5>
+                <h6>₹620,000</h6>
+              </div>
             </div>
           </div>
         </div>
@@ -517,20 +895,22 @@
         <!-- Card 3 -->
         <div class="col-sm-6 col-md-4">
           <div class="property-card">
-            <img src="card3.jpg" class="img-fluid" alt="Central Park Heights" style="border-radius: 20px; padding:8px">
-            <span class="badge bg-warning property-badge">UNDER OFFER</span>
-            <span class="heart-icon">❤️</span>
+            <img src="card3.jpg" class="img-fluid" alt="Residential Land in Abu Bakar Colony" style="border-radius: 20px; padding:8px">
+            <span class="badge bg-success property-badge">ON SALE</span>
+            <span class="heart-icon">🤍</span>
             <div class="property-details">
-              <h5>Central Park Heights</h5>
-               <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722; "></i>123 Central Park West,New York</p>
+              <h5>Residential Land in Abu Bakar Colony</h5>
+               <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722; "></i>Abu Bakar Colony, Chanapora, Srinagar</p>
               <div class="property-info" >
-                <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-bed" style="margin-right: 4px; font-size: 12px; color:#CC7722;padding: 4px;"></i> 3 </button> </div>
-                <div ><button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-bath" style="margin-right: 4px; font-size: 12px; color:#CC7722; padding: 4px;"></i> 2 </button></div>
-                <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"> <i class="fa-solid fa-chart-area" style="margin-right: 4px; font-size: 12px;color:#CC7722; padding: 4px;"></i> 250 sqft </button> </div>
+                <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-home" style="margin-right: 4px; font-size: 12px; color:#CC7722;padding: 4px;"></i> Residential </button> </div>
+                <div ><button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-road" style="margin-right: 4px; font-size: 12px; color:#CC7722; padding: 4px;"></i> Inner Side </button></div>
+                <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"> <i class="fa-solid fa-calendar" style="margin-right: 4px; font-size: 12px;color:#CC7722; padding: 4px;"></i> 2025 </button> </div>
               </div>
               <hr style=" color:gray">
-              <h5 style="margin-left: 250px;">$410,124</h5>
-              <h6 style="margin-left: 280px;"> &#8364;410,124</h6>
+              <div class="property-price text-end">
+                <h5>₹4.65 Lakhs</h5>
+                <h6>₹465,000</h6>
+              </div>
             </div>
           </div>
         </div>
@@ -543,59 +923,65 @@
         <!-- Card 4 -->
         <div class="col-sm-6 col-md-4">
           <div class="property-card">
-            <img src="card4.jpg" class="img-fluid" alt="Riverside Manor" style="border-radius: 20px; padding:8px">
+            <img src="card4.jpg" class="img-fluid" alt="Commercial Land in Baba Demb" style="border-radius: 20px; padding:8px">
             <span class="badge bg-success property-badge">ON SALE</span>
-            <span class="heart-icon">❤️</span>
+            <span class="heart-icon">🤍</span>
             <div class="property-details">
-              <h5>Harborview Heaven</h5>
-              <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722; "></i>22 Seaside Lane, Liverpool</p>
+              <h5>Commercial Land in Baba Demb</h5>
+              <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722; "></i>Baba Demb, Khanyar, Srinagar</p>
               <div class="property-info" >
-                <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-bed" style="margin-right: 4px; font-size: 12px; color:#CC7722;padding: 4px;"></i> 3 </button> </div>
-                <div ><button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-bath" style="margin-right: 4px; font-size: 12px; color:#CC7722; padding: 4px;"></i> 2 </button></div>
-                <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"> <i class="fa-solid fa-chart-area" style="margin-right: 4px; font-size: 12px;color:#CC7722; padding: 4px;"></i> 250 sqft </button> </div>
+                <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-building" style="margin-right: 4px; font-size: 12px; color:#CC7722;padding: 4px;"></i> Commercial </button> </div>
+                <div ><button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-road" style="margin-right: 4px; font-size: 12px; color:#CC7722; padding: 4px;"></i> Front Side </button></div>
+                <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"> <i class="fa-solid fa-calendar" style="margin-right: 4px; font-size: 12px;color:#CC7722; padding: 4px;"></i> 2025 </button> </div>
               </div>
               <hr style=" color:gray">
-              <h5 style="margin-left: 250px;">$410,124</h5>
-              <h6 style="margin-left: 280px;"> &#8364;410,124</h6>
+              <div class="property-price text-end">
+                <h5>₹5.95 Lakhs</h5>
+                <h6>₹595,000</h6>
+              </div>
             </div>
           </div>
         </div>
-        
+
         <div class="col-sm-6 col-md-4">
           <div class="property-card">
-            <img src="card5.jpg" class="img-fluid" alt="Riverside Retreat" style="border-radius: 20px; padding:8px">
-        <span class="badge bg-danger property-badge">SOLD</span>
-            <span class="heart-icon">❤️</span>
+            <img src="card5.jpg" class="img-fluid" alt="Residential Land in Boulevard Road" style="border-radius: 20px; padding:8px">
+        <span class="badge bg-success property-badge">ON SALE</span>
+            <span class="heart-icon">🤍</span>
             <div class="property-details">
-              <h5>Riverside Retreat</h5>
-              <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722; "></i>85 River Road,Liverpool</p>
+              <h5>Residential Land in Boulevard Road</h5>
+              <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722; "></i>Boulevard Road, Khanyar, Srinagar</p>
               <div class="property-info" >
-                <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-bed" style="margin-right: 4px; font-size: 12px; color:#CC7722;padding: 4px;"></i> 3 </button> </div>
-                <div ><button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-bath" style="margin-right: 4px; font-size: 12px; color:#CC7722; padding: 4px;"></i> 2 </button></div>
-                <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"> <i class="fa-solid fa-chart-area" style="margin-right: 4px; font-size: 12px;color:#CC7722; padding: 4px;"></i> 250 sqft </button> </div>
+                <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-home" style="margin-right: 4px; font-size: 12px; color:#CC7722;padding: 4px;"></i> Residential </button> </div>
+                <div ><button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-road" style="margin-right: 4px; font-size: 12px; color:#CC7722; padding: 4px;"></i> Front Side </button></div>
+                <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"> <i class="fa-solid fa-calendar" style="margin-right: 4px; font-size: 12px;color:#CC7722; padding: 4px;"></i> 2025 </button> </div>
               </div>
               <hr style=" color:gray">
-              <h5 style="margin-left: 250px;">$410,124</h5>
-              <h6 style="margin-left: 280px;"> &#8364;410,124</h6>
+              <div class="property-price text-end">
+                <h5>₹5.40 Lakhs</h5>
+                <h6>₹540,000</h6>
+              </div>
             </div>
           </div>
         </div>
         <div class="col-sm-6 col-md-4">
           <div class="property-card">
-            <img src="card6.jpg" class="img-fluid" alt="Urban Oasis" style="border-radius: 20px; padding:8px">
+            <img src="card6.jpg" class="img-fluid" alt="Residential Land in Hazratbal" style="border-radius: 20px; padding:8px">
             <span class="badge bg-success property-badge">ON SALE</span>
-            <span class="heart-icon">❤️</span>
+            <span class="heart-icon">🤍</span>
             <div class="property-details">
-              <h5>Urban Oasis</h5>
-              <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722; "></i>3 Metropolitian Blvd,Liverpool</p>
+              <h5>Residential Land in Hazratbal</h5>
+              <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722; "></i>Hazratbal, Hazratbal, Srinagar</p>
               <div class="property-info" >
-                <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-bed" style="margin-right: 4px; font-size: 12px; color:#CC7722;padding: 4px;"></i> 3 </button> </div>
-                <div ><button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-bath" style="margin-right: 4px; font-size: 12px; color:#CC7722; padding: 4px;"></i> 2 </button></div>
-                <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"> <i class="fa-solid fa-chart-area" style="margin-right: 4px; font-size: 12px;color:#CC7722; padding: 4px;"></i> 250 sqft </button> </div>
+                <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-home" style="margin-right: 4px; font-size: 12px; color:#CC7722;padding: 4px;"></i> Residential </button> </div>
+                <div ><button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-road" style="margin-right: 4px; font-size: 12px; color:#CC7722; padding: 4px;"></i> Inner Side </button></div>
+                <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"> <i class="fa-solid fa-calendar" style="margin-right: 4px; font-size: 12px;color:#CC7722; padding: 4px;"></i> 2025 </button> </div>
               </div>
               <hr style=" color:gray">
-              <h5 style="margin-left: 250px;">$410,124</h5>
-              <h6 style="margin-left: 280px;"> &#8364;410,124</h6>
+              <div class="property-price text-end">
+                <h5>₹4.25 Lakhs</h5>
+                <h6>₹425,000</h6>
+              </div>
             </div>
           </div>
         </div>
@@ -603,61 +989,55 @@
     </div>
   </div>
 
-  <!-- Carousel Controls -->
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
+  </div>
 
-<!-- ROW 2-->
-<!-- Carousel 2 -->
-<div id="carouselExample" class="carousel slide" data-bs-ride="carousel" style="margin-left: 50px; margin-right:50px; margin-top: 10px;">
+  <!-- Row 2 -->
+  <div id="carouselProperties2" class="carousel slide" data-bs-interval="false" style="margin-top: 10px;">
   <div class="carousel-inner">
   <div class="carousel-item active">
   <div class="row">
   <!-- Card 1 -->
   <div class="col-sm-6 col-md-4">
   <div class="property-card">
-  <img src="card7.jpg" class="img-fluid" alt="Riverside Manor" style="border-radius: 20px; padding:8px">
-            <span class="badge bg-danger property-badge">SOLD</span>
-            <span class="heart-icon">❤️</span>
+  <img src="card7.jpg" class="img-fluid" alt="Commercial Land in Lal Chowk" style="border-radius: 20px; padding:8px">
+            <span class="badge bg-success property-badge">ON SALE</span>
+            <span class="heart-icon">🤍</span>
             <div class="property-details">
-              <h5>Riverside Manor</h5>
-              <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722; "></i>56 Thames state, London</p>
+              <h5>Commercial Land in Lal Chowk</h5>
+              <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722; "></i>Lal Chowk Kothibagh, Lal Chowk, Srinagar</p>
               <div class="property-info" >
-                <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-bed" style="margin-right: 4px; font-size: 12px; color:#CC7722;padding: 4px;"></i> 3 </button> </div>
-                <div ><button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-bath" style="margin-right: 4px; font-size: 12px; color:#CC7722; padding: 4px;"></i> 2 </button></div>
-                <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"> <i class="fa-solid fa-chart-area" style="margin-right: 4px; font-size: 12px;color:#CC7722; padding: 4px;"></i> 250 sqft </button> </div>
+                <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-building" style="margin-right: 4px; font-size: 12px; color:#CC7722;padding: 4px;"></i> Commercial </button> </div>
+                <div ><button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-road" style="margin-right: 4px; font-size: 12px; color:#CC7722; padding: 4px;"></i> Front Side </button></div>
+                <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"> <i class="fa-solid fa-calendar" style="margin-right: 4px; font-size: 12px;color:#CC7722; padding: 4px;"></i> 2025 </button> </div>
               </div>
               <hr style=" color:gray">
-              <h5 style="margin-left: 250px;">$410,124</h5>
-              <h6 style="margin-left: 280px;"> &#8364;410,124</h6>
+              <div class="property-price text-end">
+                <h5>₹7.80 Lakhs</h5>
+                <h6>₹780,000</h6>
+              </div>
             </div>
           </div>
         </div>
-        
+
         <!-- Card 2 -->
         <div class="col-sm-6 col-md-4">
           <div class="property-card">
-            <img src="card8.jpg" class="img-fluid" alt="Skyline Terrace" style="border-radius: 20px; padding:8px">
+            <img src="card8.jpg" class="img-fluid" alt="Residential Land in Nishat" style="border-radius: 20px; padding:8px">
             <span class="badge bg-success property-badge">ON SALE</span>
-            <span class="heart-icon">❤️</span>
+            <span class="heart-icon">🤍</span>
             <div class="property-details">
-              <h5>Skyline Terrace</h5>
-               <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722; "></i>18 Victoria Harbour,Hong Kong</p>
+              <h5>Residential Land in Nishat</h5>
+               <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722; "></i>Nishat Mohalla, Nishat Bagh, Srinagar</p>
               <div class="property-info" >
-                <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-bed" style="margin-right: 4px; font-size: 12px; color:#CC7722;padding: 4px;"></i> 3 </button> </div>
-                <div ><button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-bath" style="margin-right: 4px; font-size: 12px; color:#CC7722; padding: 4px;"></i> 2 </button></div>
-                <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"> <i class="fa-solid fa-chart-area" style="margin-right: 4px; font-size: 12px;color:#CC7722; padding: 4px;"></i> 250 sqft </button> </div>
+                <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-home" style="margin-right: 4px; font-size: 12px; color:#CC7722;padding: 4px;"></i> Residential </button> </div>
+                <div ><button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-road" style="margin-right: 4px; font-size: 12px; color:#CC7722; padding: 4px;"></i> Front Side </button></div>
+                <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"> <i class="fa-solid fa-calendar" style="margin-right: 4px; font-size: 12px;color:#CC7722; padding: 4px;"></i> 2025 </button> </div>
               </div>
               <hr style=" color:gray">
-              <h5 style="margin-left: 250px;">$410,124</h5>
-              <h6 style="margin-left: 280px;"> &#8364;410,124</h6>
+              <div class="property-price text-end">
+                <h5>₹4.90 Lakhs</h5>
+                <h6>₹490,000</h6>
+              </div>
             </div>
           </div>
         </div>
@@ -665,20 +1045,22 @@
         <!-- Card 3 -->
         <div class="col-sm-6 col-md-4">
           <div class="property-card">
-            <img src="card9.jpg" class="img-fluid" alt="Palm Island Retreat" style="border-radius: 20px; padding:8px">
-            <span class="badge bg-warning property-badge">UNDER OFFER</span>
-            <span class="heart-icon">❤️</span>
+            <img src="card9.jpg" class="img-fluid" alt="Commercial Land in Nowshera" style="border-radius: 20px; padding:8px">
+            <span class="badge bg-success property-badge">ON SALE</span>
+            <span class="heart-icon">🤍</span>
             <div class="property-details">
-              <h5>Palm Island Retreat</h5>
-               <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722; "></i>The Palm Jumeirah,Dubai</p>
+              <h5>Commercial Land in Nowshera</h5>
+               <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722; "></i>Nowshera, Edigah, Srinagar</p>
               <div class="property-info" >
-                <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-bed" style="margin-right: 4px; font-size: 12px; color:#CC7722;padding: 4px;"></i> 3 </button> </div>
-                <div ><button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-bath" style="margin-right: 4px; font-size: 12px; color:#CC7722; padding: 4px;"></i> 2 </button></div>
-                <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"> <i class="fa-solid fa-chart-area" style="margin-right: 4px; font-size: 12px;color:#CC7722; padding: 4px;"></i> 250 sqft </button> </div>
+                <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-building" style="margin-right: 4px; font-size: 12px; color:#CC7722;padding: 4px;"></i> Commercial </button> </div>
+                <div ><button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-road" style="margin-right: 4px; font-size: 12px; color:#CC7722; padding: 4px;"></i> Inner Side </button></div>
+                <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"> <i class="fa-solid fa-calendar" style="margin-right: 4px; font-size: 12px;color:#CC7722; padding: 4px;"></i> 2025 </button> </div>
               </div>
               <hr style=" color:gray">
-              <h5 style="margin-left: 250px;">$410,124</h5>
-              <h6 style="margin-left: 280px;"> &#8364;410,124</h6>
+              <div class="property-price text-end">
+                <h5>₹5.75 Lakhs</h5>
+                <h6>₹575,000</h6>
+              </div>
             </div>
           </div>
         </div>
@@ -693,7 +1075,7 @@
           <div class="property-card">
             <img src="card10.jpg" class="img-fluid" alt="Garden Grove Estate" style="border-radius: 20px; padding:8px">
             <span class="badge bg-warning property-badge">UNDER OFFER</span>
-            <span class="heart-icon">❤️</span>
+            <span class="heart-icon">🤍</span>
             <div class="property-details">
               <h5>Garden Grove Estate</h5>
               <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722; "></i>Greenbelt Park,Liverpool</p>
@@ -703,17 +1085,19 @@
                 <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"> <i class="fa-solid fa-chart-area" style="margin-right: 4px; font-size: 12px;color:#CC7722; padding: 4px;"></i> 250 sqft </button> </div>
               </div>
               <hr style=" color:gray">
-              <h5 style="margin-left: 250px;">$410,124</h5>
-              <h6 style="margin-left: 280px;"> &#8364;410,124</h6>
+              <div class="property-price text-end">
+                <h5>$410,124</h5>
+                <h6>&#8364;410,124</h6>
+              </div>
             </div>
           </div>
         </div>
-        
+
         <div class="col-sm-6 col-md-4">
           <div class="property-card">
             <img src="card11.jpg" class="img-fluid" alt="The Lookout Loft" style="border-radius: 20px; padding:8px">
             <span class="badge bg-success property-badge">ON SALE</span>
-            <span class="heart-icon">❤️</span>
+            <span class="heart-icon">🤍</span>
             <div class="property-details">
               <h5>The Lookout Loft</h5>
               <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722; "></i>Vista Ridge,Liverpool</p>
@@ -723,8 +1107,10 @@
                 <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"> <i class="fa-solid fa-chart-area" style="margin-right: 4px; font-size: 12px;color:#CC7722; padding: 4px;"></i> 250 sqft </button> </div>
               </div>
               <hr style=" color:gray">
-              <h5 style="margin-left: 250px;">$410,124</h5>
-              <h6 style="margin-left: 280px;"> &#8364;410,124</h6>
+              <div class="property-price text-end">
+                <h5>$410,124</h5>
+                <h6>&#8364;410,124</h6>
+              </div>
             </div>
           </div>
         </div>
@@ -732,18 +1118,20 @@
           <div class="property-card">
             <img src="card12.jpg" class="img-fluid" alt="Sunset serenity" style="border-radius: 20px; padding:8px">
              <span class="badge bg-danger property-badge">SOLD</span>
-            <span class="heart-icon">❤️</span>
+            <span class="heart-icon">🤍</span>
             <div class="property-details">
               <h5>Sunset serenity</h5>
               <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722; "></i>459 West Sunset Ave,Liverpool</p>
-              <div class="property-info" >
+              <div class="property-info">
                 <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-bed" style="margin-right: 4px; font-size: 12px; color:#CC7722;padding: 4px;"></i> 3 </button> </div>
                 <div ><button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"><i class="fa-solid fa-bath" style="margin-right: 4px; font-size: 12px; color:#CC7722; padding: 4px;"></i> 2 </button></div>
                 <div> <button style=" background-color:transparent; border:1px solid #d0d7de; color:gray; border-radius:15px"> <i class="fa-solid fa-chart-area" style="margin-right: 4px; font-size: 12px;color:#CC7722; padding: 4px;"></i> 250 sqft </button> </div>
               </div>
               <hr style=" color:gray">
-              <h5 style="margin-left: 250px;">$410,124</h5>
-              <h6 style="margin-left: 280px;"> &#8364;410,124</h6>
+              <div class="property-price text-end">
+                <h5>$410,124</h5>
+                <h6>&#8364;410,124</h6>
+              </div>
             </div>
           </div>
         </div>
@@ -751,12 +1139,14 @@
     </div>
   </div>
 
-  <!-- Carousel Controls -->
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+  </div>
+
+  <!-- Synchronized Carousel Controls -->
+  <button class="carousel-control-prev synchronized-control" type="button" id="prevBtn">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
   </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+  <button class="carousel-control-next synchronized-control" type="button" id="nextBtn">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
@@ -765,7 +1155,6 @@
 <hr style=" color:gray; margin-left:30px;margin-right: 30px; margin-top: 40px;">
 <h2 style="margin-left: 50px; margin-top: 60px; "><b style="color:#CC7722;"> Discover properties</b> <b style="color:rgb(106, 129, 133)">in</b></h2>
   
-
 
   <h2 style="margin-left: 50px; margin-top: 10px; margin-bottom: 50px; color:rgb(106, 129, 133)"><b> cities you might love </b></h2>
 
@@ -792,7 +1181,7 @@
         </label>
     </section>
 
-    <div style="sans-serif; display: flex; justify-content: space-between; max-width:100%; 
+    <div class="stats-container" style="font-family: sans-serif; display: flex; justify-content: space-between; max-width:100%;
     margin-left:90px; margin-right:90px; margin-top:70px">
     <div style="text-align: left; border-right: 1px solid #ccc; padding-right: 90px;">
         <div style="font-size: 30px; font-weight: bold;color: gray;">1000+</div>
@@ -854,6 +1243,7 @@
                     </div>
                 </div>
             </div>
+
             <!-- Fourth card on the next row -->
             <div class=" col-md-4 col-12 mb-4">
                 <div class="card"style="background-color: rgba(242, 242, 242,0.4); border-radius: 20px;">
@@ -862,7 +1252,7 @@
                        <a href="howtopost.html"> <button style="padding: 10px 20px; background-color:rgba(242, 242, 242,0.65); border: rgba(242, 242, 242,0.9); color: black; border-radius: 20px; font-size:15px; width:100%; text-align: left; position: relative;">
   <span style="margin-left: 13px;">How to <span style="color:#CC7722;">Post</span></span>
   <span style="position: absolute; right: 15px;">&#8594;</span>
-</button></a>
+ </button></a>
                     </div>
                 </div>
             </div>
@@ -871,16 +1261,15 @@
 
 
     <!-- footer -->
-
 <footer class="footer">
     <div class="footer-container">
         <!-- Logo Section -->
         <div class="footer-logo">
-            <img src="realestate.png" alt="Estate Agent Power Logo">
+            <img src="realestate.png" alt="Next Worth Logo">
         </div>
 
-        <!-- Sections -->
 
+        <!-- Sections -->
         <div class="footer-sections">
             <!-- Section 1: Contact Us -->
             <div class="footer-section">
@@ -928,10 +1317,10 @@
             <div class="footer-section">
                 <h3 class="footer-title">Our Services</h3>
                 <ul class="footer-links">
-                    <li><a href="#brands-list">Brands List</a></li>
-                    <li><a href="#order">Order</a></li>
-                    <li><a href="#return-exchange">Return & Exchange</a></li>
-                    <li><a href="#fashion-list">Fashion List</a></li>
+                    <li><a href="#brands-list">Post Your Property </a></li>
+                    <li><a href="#order">Featured Properties</a></li>
+                    <li><a href="#return-exchange">Buy, Sell & Rent </a></li>
+                    <li><a href="#fashion-list">Support & Assistance</a></li>
                 </ul>
             </div>
         </div>
@@ -939,7 +1328,7 @@
 <hr> 
     <!-- Footer Bottom -->
     <div class="footer-bottom" >
-        <p>&copy; 2025 Estate Agent Power. All rights reserved.</p>
+        <p>&copy; 2025 Next Worth. All rights reserved.</p>
         <p>Developed by Faiqa Hilal</p>
     </div>
 </footer>
@@ -948,6 +1337,342 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 
+<script>
+// Synchronized Carousel Control
+document.addEventListener('DOMContentLoaded', function() {
+    const carousel1 = document.getElementById('carouselProperties1');
+    const carousel2 = document.getElementById('carouselProperties2');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    if (carousel1 && carousel2 && prevBtn && nextBtn) {
+        const bsCarousel1 = new bootstrap.Carousel(carousel1);
+        const bsCarousel2 = new bootstrap.Carousel(carousel2);
+
+        // Synchronize next button
+        nextBtn.addEventListener('click', function() {
+            bsCarousel1.next();
+            bsCarousel2.next();
+        });
+
+        // Synchronize previous button
+        prevBtn.addEventListener('click', function() {
+            bsCarousel1.prev();
+            bsCarousel2.prev();
+        });
+
+        // Optional: Add touch/swipe support for mobile
+        let startX = 0;
+        let endX = 0;
+
+        function handleSwipe() {
+            const threshold = 50;
+            const diff = startX - endX;
+
+            if (Math.abs(diff) > threshold) {
+                if (diff > 0) {
+                    // Swipe left - next
+                    bsCarousel1.next();
+                    bsCarousel2.next();
+                } else {
+                    // Swipe right - previous
+                    bsCarousel1.prev();
+                    bsCarousel2.prev();
+                }
+            }
+        }
+
+        const carouselContainer = document.getElementById('propertiesCarousel');
+        if (carouselContainer) {
+            carouselContainer.addEventListener('touchstart', function(e) {
+                startX = e.touches[0].clientX;
+            });
+
+            carouselContainer.addEventListener('touchend', function(e) {
+                endX = e.changedTouches[0].clientX;
+                handleSwipe();
+            });
+        }
+    }
+});
+
+// Modal form validation
+document.addEventListener('DOMContentLoaded', function() {
+    // Modal toggle functionality
+    const loginToggleModal = document.getElementById('loginToggleModal');
+    const signupToggleModal = document.getElementById('signupToggleModal');
+    const loginFormModal = document.getElementById('loginFormModal');
+    const signupFormModal = document.getElementById('signupFormModal');
+    const loginFooterModal = document.getElementById('loginFooterModal');
+    const signupFooterModal = document.getElementById('signupFooterModal');
+    const authModalLabel = document.getElementById('authModalLabel');
+
+    // Toggle to login
+    if (loginToggleModal) {
+        loginToggleModal.addEventListener('click', function() {
+            // Update toggle buttons
+            loginToggleModal.classList.add('active');
+            loginToggleModal.style.background = 'linear-gradient(135deg, #CC7722 0%, #e8a857 100%)';
+            loginToggleModal.style.color = 'white';
+
+            signupToggleModal.classList.remove('active');
+            signupToggleModal.style.background = 'transparent';
+            signupToggleModal.style.color = '#666';
+
+            // Update forms
+            loginFormModal.style.display = 'block';
+            signupFormModal.style.display = 'none';
+
+            // Update footers
+            loginFooterModal.style.display = 'block';
+            signupFooterModal.style.display = 'none';
+
+            // Update modal title
+            authModalLabel.textContent = 'Welcome Back';
+        });
+    }
+
+    // Toggle to signup
+    if (signupToggleModal) {
+        signupToggleModal.addEventListener('click', function() {
+            // Update toggle buttons
+            signupToggleModal.classList.add('active');
+            signupToggleModal.style.background = 'linear-gradient(135deg, #CC7722 0%, #e8a857 100%)';
+            signupToggleModal.style.color = 'white';
+
+            loginToggleModal.classList.remove('active');
+            loginToggleModal.style.background = 'transparent';
+            loginToggleModal.style.color = '#666';
+
+            // Update forms
+            signupFormModal.style.display = 'block';
+            loginFormModal.style.display = 'none';
+
+            // Update footers
+            signupFooterModal.style.display = 'block';
+            loginFooterModal.style.display = 'none';
+
+            // Update modal title
+            authModalLabel.textContent = 'Create Your Account';
+        });
+    }
+
+    // Form validation and submission
+    const modalSignupForm = document.getElementById('modalSignupForm');
+    const modalLoginForm = document.getElementById('modalLoginForm');
+    const modalPassword = document.getElementById('modalPassword');
+    const modalConfirmPassword = document.getElementById('modalConfirmPassword');
+
+    // Password confirmation validation for signup
+    if (modalPassword && modalConfirmPassword) {
+        modalConfirmPassword.addEventListener('input', function() {
+            if (modalPassword.value !== this.value) {
+                this.setCustomValidity('Passwords do not match');
+            } else {
+                this.setCustomValidity('');
+            }
+        });
+    }
+
+    // Signup form submission
+    if (modalSignupForm) {
+        modalSignupForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Account created successfully! (This is a demo)');
+
+            // Close the modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('signupModal'));
+            modal.hide();
+
+            // Reset form
+            this.reset();
+        });
+    }
+
+    // Login form submission
+    if (modalLoginForm) {
+        modalLoginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Login successful! (This is a demo)');
+
+            // Close the modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('signupModal'));
+            modal.hide();
+
+            // Reset form
+            this.reset();
+        });
+    }
+
+    // Reset modal to signup when opened
+    const signupModal = document.getElementById('signupModal');
+    if (signupModal) {
+        signupModal.addEventListener('show.bs.modal', function() {
+            // Reset to signup form by default
+            if (signupToggleModal) {
+                signupToggleModal.click();
+            }
+        });
+    }
+});
+</script>
+
+<!-- Login/Sign Up Modal -->
+<div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content" style="border-radius: 20px; border: none; overflow: hidden;">
+            <div class="modal-header" style="background: linear-gradient(135deg, #CC7722 0%, #e8a857 100%); border: none;">
+                <h5 class="modal-title text-white fw-bold" id="authModalLabel">
+                    Welcome to Next Worth
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <!-- Toggle Buttons -->
+            <div class="modal-body p-0">
+                <div class="auth-toggle-modal d-flex" style="background: rgba(248, 249, 250, 0.8); margin: 0; border-bottom: 1px solid #e0e0e0;">
+                    <button type="button" class="toggle-btn-modal flex-fill py-3 px-4 border-0 bg-transparent fw-semibold" id="loginToggleModal" style="color: #666; transition: all 0.3s ease;">
+                        <i class="fas fa-sign-in-alt me-2"></i>Login
+                    </button>
+                    <button type="button" class="toggle-btn-modal flex-fill py-3 px-4 border-0 fw-semibold active" id="signupToggleModal" style="background: linear-gradient(135deg, #CC7722 0%, #e8a857 100%); color: white; transition: all 0.3s ease;">
+                        <i class="fas fa-user-plus me-2"></i>Sign Up
+                    </button>
+                </div>
+
+                <div class="p-4" style="background: rgba(248, 249, 250, 0.95);">
+                    <!-- Login Form -->
+                    <div class="auth-form-modal" id="loginFormModal" style="display: none;">
+                        <form id="modalLoginForm">
+                            <div class="mb-4" style="background: rgba(255, 255, 255, 0.8); padding: 1.5rem; border-radius: 15px; border-left: 4px solid #CC7722;">
+                                <h6 class="fw-bold mb-3" style="color: #CC7722;">
+                                    <i class="fas fa-sign-in-alt me-2"></i>Login to Your Account
+                                </h6>
+                                <div class="row g-3">
+                                    <div class="col-12">
+                                        <label for="modalLoginEmail" class="form-label fw-semibold">Email Address</label>
+                                        <input type="email" id="modalLoginEmail" name="email" class="form-control"
+                                               placeholder="Enter your email address" required>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="modalLoginPassword" class="form-label fw-semibold">Password</label>
+                                        <input type="password" id="modalLoginPassword" name="password" class="form-control"
+                                               placeholder="Enter your password" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-check mt-3">
+                                    <input class="form-check-input" type="checkbox" id="modalRememberMe" name="rememberMe">
+                                    <label class="form-check-label" for="modalRememberMe">
+                                        Remember me for 30 days
+                                    </label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Sign Up Form -->
+                    <div class="auth-form-modal active" id="signupFormModal">
+                        <form id="modalSignupForm">
+                    <!-- Personal Information Section -->
+                    <div class="mb-4" style="background: rgba(255, 255, 255, 0.8); padding: 1.5rem; border-radius: 15px; border-left: 4px solid #CC7722;">
+                        <h6 class="text-primary fw-bold mb-3" style="color: #CC7722 !important;">
+                            Personal Information
+                        </h6>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="modalFirstName" class="form-label fw-semibold">First Name</label>
+                                <input type="text" id="modalFirstName" name="firstName" class="form-control"
+                                       placeholder="Enter your first name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="modalLastName" class="form-label fw-semibold">Last Name</label>
+                                <input type="text" id="modalLastName" name="lastName" class="form-control"
+                                       placeholder="Enter your last name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="modalEmail" class="form-label fw-semibold">Email Address</label>
+                                <input type="email" id="modalEmail" name="email" class="form-control"
+                                       placeholder="Enter your email address" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="modalPhone" class="form-label fw-semibold">Phone Number</label>
+                                <input type="tel" id="modalPhone" name="phone" class="form-control"
+                                       placeholder="Enter your phone number" required>
+                            </div>
+                            <div class="col-12">
+                                <label for="modalUserType" class="form-label fw-semibold">Account Type</label>
+                                <select id="modalUserType" name="userType" class="form-select" required>
+                                    <option value="" disabled selected>Select account type</option>
+                                    <option value="buyer">Property Buyer</option>
+                                    <option value="seller">Property Seller</option>
+                                    <option value="agent">Real Estate Agent</option>
+                                    <option value="both">Buyer & Seller</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Security Section -->
+                    <div class="mb-4" style="background: rgba(255, 255, 255, 0.8); padding: 1.5rem; border-radius: 15px; border-left: 4px solid #CC7722;">
+                        <h6 class="text-primary fw-bold mb-3" style="color: #CC7722 !important;">
+                            Security Information
+                        </h6>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="modalPassword" class="form-label fw-semibold">Password</label>
+                                <input type="password" id="modalPassword" name="password" class="form-control"
+                                       placeholder="Create a strong password" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="modalConfirmPassword" class="form-label fw-semibold">Confirm Password</label>
+                                <input type="password" id="modalConfirmPassword" name="confirmPassword" class="form-control"
+                                       placeholder="Confirm your password" required>
+                            </div>
+                        </div>
+
+                        <div class="form-check mt-3">
+                            <input class="form-check-input" type="checkbox" id="modalTerms" name="terms" required>
+                            <label class="form-check-label" for="modalTerms">
+                                I agree to the <a href="#terms" style="color: #CC7722;">Terms of Service</a> and <a href="#privacy" style="color: #CC7722;">Privacy Policy</a>
+                            </label>
+                        </div>
+                    </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer border-0 p-4 pt-0" style="background: rgba(248, 249, 250, 0.95);">
+                <!-- Login Footer -->
+                <div class="auth-footer-modal w-100" id="loginFooterModal" style="display: none;">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" form="modalLoginForm" class="btn text-white" style="background: linear-gradient(135deg, #CC7722 0%, #e8a857 100%); border: none; padding: 0.5rem 2rem;">
+                            <i class="fas fa-sign-in-alt me-2"></i>Login
+                        </button>
+                    </div>
+                    <div class="mt-2 text-center w-100">
+                        <small><a href="#forgot" style="color: #CC7722; text-decoration: none;">Forgot your password?</a></small>
+                    </div>
+                </div>
+
+                <!-- Sign Up Footer -->
+                <div class="auth-footer-modal w-100" id="signupFooterModal">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" form="modalSignupForm" class="btn text-white" style="background: linear-gradient(135deg, #CC7722 0%, #e8a857 100%); border: none; padding: 0.5rem 2rem;">
+                            <i class="fas fa-user-plus me-2"></i>Create Account
+                        </button>
+                    </div>
+                    <div class="mt-2 text-center w-100">
+                        <small class="text-muted">Welcome to Next Worth!</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

@@ -17,14 +17,13 @@
 }
 
 body {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Inter', 'Arial', sans-serif;
     background-color: var(--background);
     color: var(--text);
-    line-height: 1.8;
-    letter-spacing: 0.02em;
+    margin: 0;
 }
 
-.container {
+.main-container {
     max-width: 1400px;
     margin: 0 auto;
     padding: 40px 20px;
@@ -234,28 +233,113 @@ body {
     line-height: 1.8;
 }
 
+/* Enhanced Responsive Design */
+@media (max-width: 1200px) {
+    .main-container {
+        padding: 30px 15px;
+    }
+    .hero-text h1 {
+        font-size: 3.8rem;
+    }
+}
+
 @media (max-width: 1024px) {
     .content-grid, .mistakes-grid, .checklist-grid, .resources-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
     }
     .hero-text h1 {
-        font-size: 3.5rem;
+        font-size: 3.2rem;
+    }
+    .hero-section {
+        gap: 40px;
+        margin: 100px 0;
+    }
+    .step-card, .mistake-card, .checklist-card, .resource-card {
+        padding: 30px;
     }
 }
 
 @media (max-width: 768px) {
     .hero-section {
         grid-template-columns: 1fr;
-        margin: 80px 0;
+        margin: 60px 0;
+        gap: 30px;
     }
     .content-grid, .mistakes-grid, .checklist-grid, .resources-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
     }
     .hero-text {
-        padding-top: 40px;
+        padding-top: 20px;
+        text-align: center;
+    }
+    .hero-text h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+    }
+    .hero-text p {
+        font-size: 1rem !important;
+        margin-bottom: 20px !important;
     }
     .section-title {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
+        margin: 60px 0 40px;
+    }
+    .hero-image {
+        height: 400px;
+    }
+    .step-card, .mistake-card, .checklist-card, .resource-card {
+        padding: 25px;
+    }
+    .step-title, .mistake-card h3, .checklist-card h3, .resource-card h3 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .main-container {
+        padding: 20px 10px;
+    }
+    .hero-text h1 {
+        font-size: 2rem;
+        line-height: 1.3;
+    }
+    .hero-text p {
+        font-size: 0.9rem !important;
+    }
+    .section-title {
+        font-size: 1.8rem;
+        margin: 40px 0 30px;
+    }
+    .hero-image {
+        height: 300px;
+    }
+    .step-card, .mistake-card, .checklist-card, .resource-card {
+        padding: 20px;
+    }
+    .step-title, .mistake-card h3, .checklist-card h3, .resource-card h3 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+    }
+    .step-description, .mistake-card p, .resource-card p {
+        font-size: 1rem;
+    }
+    .checklist-card ul li {
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-text h1 {
+        font-size: 1.8rem;
+    }
+    .section-title {
+        font-size: 1.6rem;
+    }
+    .step-card, .mistake-card, .checklist-card, .resource-card {
+        padding: 15px;
     }
 }
 a {
@@ -269,11 +353,6 @@ a:hover {
 
 
  /* Footer */
-        body {
-            margin: 0;
-            font-family: 'Inter', 'Arial', sans-serif;
-            
-        }
         .footer {
               background-color:#f8f8f880;
             color: #333; /* Black text */
@@ -351,13 +430,48 @@ a:hover {
             margin: 5px 0;
         }
 
-        /* Responsive Design */
+        /* Footer Responsive Design */
+        @media (max-width: 992px) {
+            .footer-sections {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+            .footer-logo img {
+                height: 140px;
+                padding: 30px;
+                padding-left: 60px;
+            }
+        }
+
         @media (max-width: 768px) {
             .footer-container {
-                grid-template-columns: 1fr; 
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
             .footer-sections {
-                grid-template-columns: 1fr; 
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            .footer-logo {
+                justify-content: center;
+            }
+            .footer-logo img {
+                height: 120px;
+                padding: 20px;
+                padding-left: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer {
+                padding: 30px 15px;
+            }
+            .footer-logo img {
+                height: 100px;
+                padding: 15px;
+            }
+            .footer-section {
+                text-align: center;
             }
         }
 
@@ -411,33 +525,25 @@ a:hover {
           </li>
           
 
-            <!--dropdown-->
+            <!--predict-->
             <li class="nav-item mx-2 d-flex align-items-center" >
-            <i class="fa-brands fa-gg"></i> 
-
-        <select class="form-select currency-dropdown border border-0 bg-transparent  text-secondary fs-5" aria-label="Currency" > 
-          <option selected disabled style="background-color: rgba(230, 230, 230);"> Currency</option>
-          <option value="usd">USD</option>
-          <option value="eur">EUR</option>
-          <option value="inr">INR</option>
-        </select>
+            <i class="fa-solid fa-chart-simple"></i>
+            <a class="nav-link text-secondary fs-5" href="predict-prices.html">Predict</a>
       </li>
 
       <li class="nav-item mx-2 d-flex align-items-center" >
-        <i class="fa-solid fa-font"></i>
-        <select class="form-select currency-dropdown border border-0 bg-transparent text-secondary fs-5" aria-label="Currency">
-          <option selected disabled style="background-color: rgba(230, 230, 230);">  Language</option>
-          <option value="usd">English</option>
-          <option value="eur">Hindi</option>
-        </select>
+        <i class="fa-solid fa-heart"></i>
+        <a class="nav-link text-secondary fs-5" href="wishlist.html" id="wishlistLink">
+          Wishlist
+        </a>
       </li>
             <!--dropdown -->
 
                   
            </ul>
         <div class="d-flex  flex-column flex-lg-row justify-content-center  align-items-center gap-4">
-          <a href="#signup" class="text-black d-flex align-items-center px-3 py-1 rounded-4 " style="text-decoration: none; background-color: beige;"><i class="fa-regular fa-user"></i>&emsp;sign up </a>
-          <a href="#add" class="text-white text-decoration-none px-3 py-1 rounded-4" style="background-color:#CC7722;">Post a free add </a>
+          <a href="#" class="text-black d-flex align-items-center px-3 py-1 rounded-4" style="text-decoration: none; background-color: beige;" data-bs-toggle="modal" data-bs-target="#signupModal"><i class="fa-regular fa-user"></i>&emsp;sign up </a>
+          <a href="post.html" class="text-white text-decoration-none px-3 py-1 rounded-4" style="background-color:#CC7722;">Post a free add </a>
         </div>
       </div>
     </div>
@@ -445,7 +551,7 @@ a:hover {
 </nav>
  <!-- navbar end -->
 
-    <div class="container">
+    <div class="main-container">
         <section class="hero-section">
             <div class="hero-text">
                 <h1>How To <span style="color: var(--primary); font-weight: 600;">Buy</span><br>— simplified.</h1>
@@ -601,7 +707,7 @@ a:hover {
     <div class="footer-container">
         <!-- Logo Section -->
         <div class="footer-logo">
-            <img src="realestate.png" alt="Estate Agent Power Logo">
+            <img src="realestate.png" alt="Next Worth Logo">
         </div>
 
         <!-- Sections -->
@@ -653,10 +759,10 @@ a:hover {
             <div class="footer-section">
                 <h3 class="footer-title">Our Services</h3>
                 <ul class="footer-links">
-                    <li><a href="#brands-list">Brands List</a></li>
-                    <li><a href="#order">Order</a></li>
-                    <li><a href="#return-exchange">Return & Exchange</a></li>
-                    <li><a href="#fashion-list">Fashion List</a></li>
+                    <li><a href="#brands-list">Post Your Property </a></li>
+                    <li><a href="#order">Featured Properties</a></li>
+                    <li><a href="#return-exchange">Buy, Sell & Rent </a></li>
+                    <li><a href="#fashion-list">Support & Assistance</a></li>
                 </ul>
             </div>
         </div>
@@ -664,13 +770,277 @@ a:hover {
 <hr> 
     <!-- Footer Bottom -->
     <div class="footer-bottom" >
-        <p>&copy; 2025 Estate Agent Power. All rights reserved.</p>
+        <p>&copy; 2025 Next Worth. All rights reserved.</p>
         <p>Developed by Faiqa Hilal</p>
     </div>
 </footer>
 
 
  
+
+<!-- Login/Sign Up Modal -->
+<div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content" style="border-radius: 20px; border: none; overflow: hidden;">
+            <div class="modal-header" style="background: linear-gradient(135deg, #CC7722 0%, #e8a857 100%); border: none;">
+                <h5 class="modal-title text-white fw-bold" id="authModalLabel">
+                    Welcome to Next Worth
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <!-- Toggle Buttons -->
+            <div class="modal-body p-0">
+                <div class="auth-toggle-modal d-flex" style="background: rgba(248, 249, 250, 0.8); margin: 0; border-bottom: 1px solid #e0e0e0;">
+                    <button type="button" class="toggle-btn-modal flex-fill py-3 px-4 border-0 bg-transparent fw-semibold" id="loginToggleModal" style="color: #666; transition: all 0.3s ease;">
+                        <i class="fas fa-sign-in-alt me-2"></i>Login
+                    </button>
+                    <button type="button" class="toggle-btn-modal flex-fill py-3 px-4 border-0 fw-semibold active" id="signupToggleModal" style="background: linear-gradient(135deg, #CC7722 0%, #e8a857 100%); color: white; transition: all 0.3s ease;">
+                        <i class="fas fa-user-plus me-2"></i>Sign Up
+                    </button>
+                </div>
+
+                <div class="p-4" style="background: rgba(248, 249, 250, 0.95);">
+                    <!-- Login Form -->
+                    <div class="auth-form-modal" id="loginFormModal" style="display: none;">
+                        <form id="modalLoginForm">
+                            <div class="mb-4" style="background: rgba(255, 255, 255, 0.8); padding: 1.5rem; border-radius: 15px; border-left: 4px solid #CC7722;">
+                                <h6 class="fw-bold mb-3" style="color: #CC7722;">
+                                    <i class="fas fa-sign-in-alt me-2"></i>Login to Your Account
+                                </h6>
+                                <div class="row g-3">
+                                    <div class="col-12">
+                                        <label for="modalLoginEmail" class="form-label fw-semibold">Email Address</label>
+                                        <input type="email" id="modalLoginEmail" name="email" class="form-control"
+                                               placeholder="Enter your email address" required>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="modalLoginPassword" class="form-label fw-semibold">Password</label>
+                                        <input type="password" id="modalLoginPassword" name="password" class="form-control"
+                                               placeholder="Enter your password" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-check mt-3">
+                                    <input class="form-check-input" type="checkbox" id="modalRememberMe" name="rememberMe">
+                                    <label class="form-check-label" for="modalRememberMe">
+                                        Remember me for 30 days
+                                    </label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Sign Up Form -->
+                    <div class="auth-form-modal active" id="signupFormModal">
+                        <form id="modalSignupForm">
+                    <!-- Personal Information Section -->
+                    <div class="mb-4" style="background: rgba(255, 255, 255, 0.8); padding: 1.5rem; border-radius: 15px; border-left: 4px solid #CC7722;">
+                        <h6 class="text-primary fw-bold mb-3" style="color: #CC7722 !important;">
+                            Personal Information
+                        </h6>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="modalFirstName" class="form-label fw-semibold">First Name</label>
+                                <input type="text" id="modalFirstName" name="firstName" class="form-control"
+                                       placeholder="Enter your first name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="modalLastName" class="form-label fw-semibold">Last Name</label>
+                                <input type="text" id="modalLastName" name="lastName" class="form-control"
+                                       placeholder="Enter your last name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="modalEmail" class="form-label fw-semibold">Email Address</label>
+                                <input type="email" id="modalEmail" name="email" class="form-control"
+                                       placeholder="Enter your email address" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="modalPhone" class="form-label fw-semibold">Phone Number</label>
+                                <input type="tel" id="modalPhone" name="phone" class="form-control"
+                                       placeholder="Enter your phone number" required>
+                            </div>
+                            <div class="col-12">
+                                <label for="modalUserType" class="form-label fw-semibold">Account Type</label>
+                                <select id="modalUserType" name="userType" class="form-select" required>
+                                    <option value="" disabled selected>Select account type</option>
+                                    <option value="buyer">Property Buyer</option>
+                                    <option value="seller">Property Seller</option>
+                                    <option value="agent">Real Estate Agent</option>
+                                    <option value="both">Buyer & Seller</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Security Section -->
+                    <div class="mb-4" style="background: rgba(255, 255, 255, 0.8); padding: 1.5rem; border-radius: 15px; border-left: 4px solid #CC7722;">
+                        <h6 class="text-primary fw-bold mb-3" style="color: #CC7722 !important;">
+                            Security Information
+                        </h6>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="modalPassword" class="form-label fw-semibold">Password</label>
+                                <input type="password" id="modalPassword" name="password" class="form-control"
+                                       placeholder="Create a strong password" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="modalConfirmPassword" class="form-label fw-semibold">Confirm Password</label>
+                                <input type="password" id="modalConfirmPassword" name="confirmPassword" class="form-control"
+                                       placeholder="Confirm your password" required>
+                            </div>
+                        </div>
+
+                        <div class="form-check mt-3">
+                            <input class="form-check-input" type="checkbox" id="modalTerms" name="terms" required>
+                            <label class="form-check-label" for="modalTerms">
+                                I agree to the <a href="#terms" style="color: #CC7722;">Terms of Service</a> and <a href="#privacy" style="color: #CC7722;">Privacy Policy</a>
+                            </label>
+                        </div>
+                    </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer border-0 p-4 pt-0" style="background: rgba(248, 249, 250, 0.95);">
+                <!-- Login Footer -->
+                <div class="auth-footer-modal w-100" id="loginFooterModal" style="display: none;">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" form="modalLoginForm" class="btn text-white" style="background: linear-gradient(135deg, #CC7722 0%, #e8a857 100%); border: none; padding: 0.5rem 2rem;">
+                            <i class="fas fa-sign-in-alt me-2"></i>Login
+                        </button>
+                    </div>
+                    <div class="mt-2 text-center w-100">
+                        <small><a href="#forgot" style="color: #CC7722; text-decoration: none;">Forgot your password?</a></small>
+                    </div>
+                </div>
+
+                <!-- Sign Up Footer -->
+                <div class="auth-footer-modal w-100" id="signupFooterModal">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" form="modalSignupForm" class="btn text-white" style="background: linear-gradient(135deg, #CC7722 0%, #e8a857 100%); border: none; padding: 0.5rem 2rem;">
+                            <i class="fas fa-user-plus me-2"></i>Create Account
+                        </button>
+                    </div>
+                    <div class="mt-2 text-center w-100">
+                        <small class="text-muted">Welcome to Next Worth!</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Modal toggle and form validation
+document.addEventListener('DOMContentLoaded', function() {
+    // Modal toggle functionality
+    const loginToggleModal = document.getElementById('loginToggleModal');
+    const signupToggleModal = document.getElementById('signupToggleModal');
+    const loginFormModal = document.getElementById('loginFormModal');
+    const signupFormModal = document.getElementById('signupFormModal');
+    const loginFooterModal = document.getElementById('loginFooterModal');
+    const signupFooterModal = document.getElementById('signupFooterModal');
+    const authModalLabel = document.getElementById('authModalLabel');
+
+    // Toggle to login
+    if (loginToggleModal) {
+        loginToggleModal.addEventListener('click', function() {
+            loginToggleModal.classList.add('active');
+            loginToggleModal.style.background = 'linear-gradient(135deg, #CC7722 0%, #e8a857 100%)';
+            loginToggleModal.style.color = 'white';
+
+            signupToggleModal.classList.remove('active');
+            signupToggleModal.style.background = 'transparent';
+            signupToggleModal.style.color = '#666';
+
+            loginFormModal.style.display = 'block';
+            signupFormModal.style.display = 'none';
+
+            loginFooterModal.style.display = 'block';
+            signupFooterModal.style.display = 'none';
+
+            authModalLabel.textContent = 'Welcome Back';
+        });
+    }
+
+    // Toggle to signup
+    if (signupToggleModal) {
+        signupToggleModal.addEventListener('click', function() {
+            signupToggleModal.classList.add('active');
+            signupToggleModal.style.background = 'linear-gradient(135deg, #CC7722 0%, #e8a857 100%)';
+            signupToggleModal.style.color = 'white';
+
+            loginToggleModal.classList.remove('active');
+            loginToggleModal.style.background = 'transparent';
+            loginToggleModal.style.color = '#666';
+
+            signupFormModal.style.display = 'block';
+            loginFormModal.style.display = 'none';
+
+            signupFooterModal.style.display = 'block';
+            loginFooterModal.style.display = 'none';
+
+            authModalLabel.textContent = 'Create Your Account';
+        });
+    }
+
+    // Form validation and submission
+    const modalSignupForm = document.getElementById('modalSignupForm');
+    const modalLoginForm = document.getElementById('modalLoginForm');
+    const modalPassword = document.getElementById('modalPassword');
+    const modalConfirmPassword = document.getElementById('modalConfirmPassword');
+
+    // Password confirmation validation for signup
+    if (modalPassword && modalConfirmPassword) {
+        modalConfirmPassword.addEventListener('input', function() {
+            if (modalPassword.value !== this.value) {
+                this.setCustomValidity('Passwords do not match');
+            } else {
+                this.setCustomValidity('');
+            }
+        });
+    }
+
+    // Signup form submission
+    if (modalSignupForm) {
+        modalSignupForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Account created successfully! Please check your email for verification.');
+
+            const modal = bootstrap.Modal.getInstance(document.getElementById('signupModal'));
+            modal.hide();
+            this.reset();
+        });
+    }
+
+    // Login form submission
+    if (modalLoginForm) {
+        modalLoginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Login successful! Welcome back.');
+
+            const modal = bootstrap.Modal.getInstance(document.getElementById('signupModal'));
+            modal.hide();
+            this.reset();
+        });
+    }
+
+    // Reset modal to signup when opened
+    const signupModal = document.getElementById('signupModal');
+    if (signupModal) {
+        signupModal.addEventListener('show.bs.modal', function() {
+            if (signupToggleModal) {
+                signupToggleModal.click();
+            }
+        });
+    }
+});
+</script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
