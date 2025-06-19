@@ -6,7 +6,6 @@
     <title>All Properties - Next Worth</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 <style>
 /* Property Card Styles */
 .property-card {
@@ -169,7 +168,7 @@
 
 .footer-container {
     display: grid;
-    grid-template-columns: 1fr 3fr; 
+    grid-template-columns: 1fr 3fr;
     align-items: start;
     max-width: 1200px;
     margin: 0 auto;
@@ -189,7 +188,7 @@
 
 .footer-sections {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); 
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
 }
 
@@ -198,7 +197,7 @@
 }
 
 .footer-title {
-    color: #CC7722; 
+    color: #CC7722;
     font-size: 16px;
     margin-bottom: 10px;
     text-transform: uppercase;
@@ -214,14 +213,14 @@
 }
 
 .footer-links a {
-    color: #333; 
+    color: #333;
     text-decoration: none;
     font-size: 14px;
     transition: color 0.3s;
 }
 
 .footer-links a:hover {
-    color: #CC7722; 
+    color: #CC7722;
 }
 
 .contact-info {
@@ -314,7 +313,7 @@
     .properties-container {
         padding: 30px 0;
     }
-    
+
     .filter-section {
         padding: 20px;
     }
@@ -331,7 +330,7 @@
             </a>
 
             <!--BUTTON -->
-            <button 
+            <button
                 class="navbar-toggler shadow-none border-0"
                 type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -339,9 +338,9 @@
             <!--SIDEBAR-->
 
             <div
-                class=" sidebar offcanvas offcanvas-start" 
+                class=" sidebar offcanvas offcanvas-start"
                 tabindex="-1"
-                id="offcanvasNavbar" 
+                id="offcanvasNavbar"
                 aria-labelledby="offcanvasNavbarLabel">
 
                 <!-- Sidebar header-->
@@ -367,9 +366,9 @@
 
                         <!--dropdown-->
                         <li class="nav-item mx-2 d-flex align-items-center" >
-                            <i class="fa-brands fa-gg"></i> 
+                            <i class="fa-brands fa-gg"></i>
 
-                            <select class="form-select currency-dropdown border border-0 bg-transparent  text-secondary fs-5" aria-label="Currency" > 
+                            <select class="form-select currency-dropdown border border-0 bg-transparent  text-secondary fs-5" aria-label="Currency" >
                                 <option selected disabled style="background-color: rgba(230, 230, 230);"> Currency</option>
                                 <option value="usd">USD</option>
                                 <option value="eur">EUR</option>
@@ -386,7 +385,7 @@
                         <!--dropdown -->
                     </ul>
                     <div class="d-flex  flex-column flex-lg-row justify-content-center  align-items-center gap-4">
-                        <a href="#" class="text-black d-flex align-items-center px-3 py-1 rounded-4" style="text-decoration: none; background-color: beige;" data-bs-toggle="modal" data-bs-target="#signupModal"><i class="fa-regular fa-user"></i>&emsp;sign up </a>
+                        <a href="#" class="text-black d-flex align-items-center px-3 py-1 rounded-4" style="text-decoration: none; background-color: beige;" data-bs-toggle="modal" data-bs-target="#signupModal"><i class="fa-regular fa-user"></i> sign up </a>
                         <a href="post.html" class="text-white text-decoration-none px-3 py-1 rounded-4" style="background-color:#CC7722;">Post a free add </a>
                     </div>
                 </div>
@@ -455,13 +454,13 @@
             </div>
 
             <!-- Properties Grid -->
-            <div class="row">
+            <div class="row" id="propertiesGrid">
                 <!-- Card 1 - Residential Family Home -->
                 <div class="col-lg-4 col-md-6 property-item" data-type="residential" data-price="850000" data-bedrooms="4" data-status="SOLD">
                     <div class="property-card">
                         <img src="card1.jpg" class="img-fluid" alt="Residential Family Home">
                         <span class="badge bg-danger property-badge">SOLD</span>
-                        <span class="heart-icon">❤️</span>
+                        <span class="heart-icon">🤍</span>
                         <div class="property-details">
                             <h5>Residential Family Home</h5>
                             <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722;"></i>11 League, Liverpool, UK L10 INH</p>
@@ -481,7 +480,7 @@
                     <div class="property-card">
                         <img src="card2.jpg" class="img-fluid" alt="Luxury Residential Villa">
                         <span class="badge bg-success property-badge">ON SALE</span>
-                        <span class="heart-icon">❤️</span>
+                        <span class="heart-icon">🤍</span>
                         <div class="property-details">
                             <h5>Luxury Residential Villa</h5>
                             <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722;"></i>25 Palm Street, Miami, FL 33101</p>
@@ -501,7 +500,7 @@
                     <div class="property-card">
                         <img src="card3.jpg" class="img-fluid" alt="Commercial Office Building">
                         <span class="badge bg-warning property-badge">UNDER OFFER</span>
-                        <span class="heart-icon">❤️</span>
+                        <span class="heart-icon">🤍</span>
                         <div class="property-details">
                             <h5>Commercial Office Building</h5>
                             <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722;"></i>88 Park Avenue, New York, NY 10016</p>
@@ -521,7 +520,7 @@
                     <div class="property-card">
                         <img src="card4.jpg" class="img-fluid" alt="Residential Condo">
                         <span class="badge bg-success property-badge">ON SALE</span>
-                        <span class="heart-icon">❤️</span>
+                        <span class="heart-icon">🤍</span>
                         <div class="property-details">
                             <h5>Residential Condo</h5>
                             <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722;"></i>42 Harbor Drive, San Francisco, CA 94102</p>
@@ -541,7 +540,7 @@
                     <div class="property-card">
                         <img src="card5.jpg" class="img-fluid" alt="Commercial Retail Space">
                         <span class="badge bg-danger property-badge">SOLD</span>
-                        <span class="heart-icon">❤️</span>
+                        <span class="heart-icon">🤍</span>
                         <div class="property-details">
                             <h5>Commercial Retail Space</h5>
                             <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722;"></i>15 River Road, Portland, OR 97201</p>
@@ -561,7 +560,7 @@
                     <div class="property-card">
                         <img src="card6.jpg" class="img-fluid" alt="Residential Apartment">
                         <span class="badge bg-success property-badge">ON SALE</span>
-                        <span class="heart-icon">❤️</span>
+                        <span class="heart-icon">🤍</span>
                         <div class="property-details">
                             <h5>Residential Apartment</h5>
                             <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722;"></i>77 City Center, Chicago, IL 60601</p>
@@ -581,7 +580,7 @@
                     <div class="property-card">
                         <img src="card7.jpg" class="img-fluid" alt="Commercial Warehouse">
                         <span class="badge bg-danger property-badge">SOLD</span>
-                        <span class="heart-icon">❤️</span>
+                        <span class="heart-icon">🤍</span>
                         <div class="property-details">
                             <h5>Commercial Warehouse</h5>
                             <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722;"></i>33 Manor Lane, Boston, MA 02101</p>
@@ -601,7 +600,7 @@
                     <div class="property-card">
                         <img src="card8.jpg" class="img-fluid" alt="Residential Penthouse">
                         <span class="badge bg-success property-badge">ON SALE</span>
-                        <span class="heart-icon">❤️</span>
+                        <span class="heart-icon">🤍</span>
                         <div class="property-details">
                             <h5>Residential Penthouse</h5>
                             <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722;"></i>99 Sky Tower, Seattle, WA 98101</p>
@@ -621,7 +620,7 @@
                     <div class="property-card">
                         <img src="card9.jpg" class="img-fluid" alt="Commercial Office Complex">
                         <span class="badge bg-warning property-badge">UNDER OFFER</span>
-                        <span class="heart-icon">❤️</span>
+                        <span class="heart-icon">🤍</span>
                         <div class="property-details">
                             <h5>Commercial Office Complex</h5>
                             <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722;"></i>12 Island View, Key West, FL 33040</p>
@@ -641,7 +640,7 @@
                     <div class="property-card">
                         <img src="card10.jpg" class="img-fluid" alt="Residential Townhouse">
                         <span class="badge bg-warning property-badge">UNDER OFFER</span>
-                        <span class="heart-icon">❤️</span>
+                        <span class="heart-icon">🤍</span>
                         <div class="property-details">
                             <h5>Residential Townhouse</h5>
                             <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722;"></i>56 Grove Street, Austin, TX 73301</p>
@@ -661,7 +660,7 @@
                     <div class="property-card">
                         <img src="card11.jpg" class="img-fluid" alt="Commercial Office Space">
                         <span class="badge bg-success property-badge">ON SALE</span>
-                        <span class="heart-icon">❤️</span>
+                        <span class="heart-icon">🤍</span>
                         <div class="property-details">
                             <h5>Commercial Office Space</h5>
                             <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722;"></i>21 Lookout Point, Denver, CO 80201</p>
@@ -681,7 +680,7 @@
                     <div class="property-card">
                         <img src="card12.jpg" class="img-fluid" alt="Residential Mansion">
                         <span class="badge bg-danger property-badge">SOLD</span>
-                        <span class="heart-icon">❤️</span>
+                        <span class="heart-icon">🤍</span>
                         <div class="property-details">
                             <h5>Residential Mansion</h5>
                             <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722;"></i>8 Sunset Boulevard, Los Angeles, CA 90210</p>
@@ -696,14 +695,12 @@
                     </div>
                 </div>
 
-                <!-- Additional New Properties -->
-
                 <!-- Card 13 - Luxury Residential Estate -->
                 <div class="col-lg-4 col-md-6 property-item" data-type="residential" data-price="5800000" data-bedrooms="9" data-status="ON SALE">
                     <div class="property-card">
                         <img src="card1.jpg" class="img-fluid" alt="Luxury Residential Estate">
                         <span class="badge bg-success property-badge">ON SALE</span>
-                        <span class="heart-icon">❤️</span>
+                        <span class="heart-icon">🤍</span>
                         <div class="property-details">
                             <h5>Luxury Residential Estate</h5>
                             <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722;"></i>45 Mountain Ridge, Aspen, CO 81611</p>
@@ -723,7 +720,7 @@
                     <div class="property-card">
                         <img src="card2.jpg" class="img-fluid" alt="Commercial Shopping Center">
                         <span class="badge bg-success property-badge">ON SALE</span>
-                        <span class="heart-icon">❤️</span>
+                        <span class="heart-icon">🤍</span>
                         <div class="property-details">
                             <h5>Commercial Shopping Center</h5>
                             <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722;"></i>123 Ocean Drive, Malibu, CA 90265</p>
@@ -743,7 +740,7 @@
                     <div class="property-card">
                         <img src="card3.jpg" class="img-fluid" alt="Commercial High-Rise">
                         <span class="badge bg-warning property-badge">UNDER OFFER</span>
-                        <span class="heart-icon">❤️</span>
+                        <span class="heart-icon">🤍</span>
                         <div class="property-details">
                             <h5>Commercial High-Rise</h5>
                             <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722;"></i>200 Fifth Avenue, New York, NY 10010</p>
@@ -763,7 +760,7 @@
                     <div class="property-card">
                         <img src="card4.jpg" class="img-fluid" alt="Residential Lakefront Home">
                         <span class="badge bg-success property-badge">ON SALE</span>
-                        <span class="heart-icon">❤️</span>
+                        <span class="heart-icon">🤍</span>
                         <div class="property-details">
                             <h5>Residential Lakefront Home</h5>
                             <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722;"></i>67 Lake Shore Drive, Lake Tahoe, CA 96150</p>
@@ -783,7 +780,7 @@
                     <div class="property-card">
                         <img src="card5.jpg" class="img-fluid" alt="Commercial Hotel">
                         <span class="badge bg-success property-badge">ON SALE</span>
-                        <span class="heart-icon">❤️</span>
+                        <span class="heart-icon">🤍</span>
                         <div class="property-details">
                             <h5>Commercial Hotel</h5>
                             <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722;"></i>89 Heritage Lane, Charleston, SC 29401</p>
@@ -803,7 +800,7 @@
                     <div class="property-card">
                         <img src="card6.jpg" class="img-fluid" alt="Residential Modern Home">
                         <span class="badge bg-success property-badge">ON SALE</span>
-                        <span class="heart-icon">❤️</span>
+                        <span class="heart-icon">🤍</span>
                         <div class="property-details">
                             <h5>Residential Modern Home</h5>
                             <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722;"></i>34 Design District, Miami, FL 33137</p>
@@ -817,6 +814,8 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Dynamic Firebase cards will be appended here -->
             </div>
         </div>
     </div>
@@ -883,7 +882,7 @@
         <hr>
         <!-- Footer Bottom -->
         <div class="footer-bottom">
-            <p>&copy; 2025 Next Worth. All rights reserved.</p>
+            <p>© 2025 Next Worth. All rights reserved.</p>
             <p>Developed by Faiqa Hilal</p>
         </div>
     </footer>
@@ -1045,359 +1044,393 @@
         </div>
     </div>
 
-    <script>
-    // Wishlist functionality
-    let wishlist = JSON.parse(localStorage.getItem('propertyWishlist')) || [];
+    <!-- Firebase and JavaScript -->
+    <script type="module">
+        // Import Firebase SDKs
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-    // Property Filter Functionality
-    document.addEventListener('DOMContentLoaded', function() {
-        // Initialize wishlist
-        updateHeartIcons();
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDAU8NKfmwWri5hJQfx_dtMw8lxdlFrI0Q",
+            authDomain: "nextworth-a0bb6.firebaseapp.com",
+            projectId: "nextworth-a0bb6",
+            storageBucket: "nextworth-a0bb6.firebasestorage.app",
+            messagingSenderId: "923710068587",
+            appId: "1:923710068587:web:8a910418ff6e78a9739e2e",
+            measurementId: "G-GRFN7CG4M6"
+        };
 
-        // Get all filter elements
-        const propertyTypeFilter = document.getElementById('propertyTypeFilter');
-        const priceRangeFilter = document.getElementById('priceRangeFilter');
-        const bedroomsFilter = document.getElementById('bedroomsFilter');
-        const statusFilter = document.getElementById('statusFilter');
-        const clearFiltersBtn = document.getElementById('clearFilters');
-        const resultsCount = document.getElementById('resultsCount');
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
 
-        // Get all property items
-        const propertyItems = document.querySelectorAll('.property-item');
+        // Wishlist functionality
+        let wishlist = JSON.parse(localStorage.getItem('propertyWishlist')) || [];
 
-        // Wishlist functions
-        function updateHeartIcons() {
-            const heartIcons = document.querySelectorAll('.heart-icon');
-            heartIcons.forEach(heart => {
-                const propertyId = heart.getAttribute('data-property-id');
-                if (wishlist.some(item => item.id === propertyId)) {
-                    heart.classList.add('active');
-                    heart.textContent = '❤️';
-                } else {
-                    heart.classList.remove('active');
-                    heart.textContent = '🤍';
+        // Property Filter and Firebase Integration
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Initialize wishlist
+            updateHeartIcons();
+
+            // Get all filter elements
+            const propertyTypeFilter = document.getElementById('propertyTypeFilter');
+            const priceRangeFilter = document.getElementById('priceRangeFilter');
+            const bedroomsFilter = document.getElementById('bedroomsFilter');
+            const statusFilter = document.getElementById('statusFilter');
+            const clearFiltersBtn = document.getElementById('clearFilters');
+            const resultsCount = document.getElementById('resultsCount');
+            const propertiesGrid = document.getElementById('propertiesGrid');
+
+            // Wishlist functions
+            function updateHeartIcons() {
+                const heartIcons = document.querySelectorAll('.heart-icon');
+                heartIcons.forEach(heart => {
+                    const propertyId = heart.getAttribute('data-property-id');
+                    if (wishlist.some(item => item.id === propertyId)) {
+                        heart.classList.add('active');
+                        heart.textContent = '❤️';
+                    } else {
+                        heart.classList.remove('active');
+                        heart.textContent = '🤍';
+                    }
+                });
+            }
+
+            function addToWishlist(propertyData) {
+                if (!wishlist.some(item => item.id === propertyData.id)) {
+                    wishlist.push(propertyData);
+                    localStorage.setItem('propertyWishlist', JSON.stringify(wishlist));
+                    updateHeartIcons();
+                    showNotification(`${propertyData.name} added to wishlist!`, 'success');
                 }
-            });
-        }
+            }
 
-        function addToWishlist(propertyData) {
-            if (!wishlist.some(item => item.id === propertyData.id)) {
-                wishlist.push(propertyData);
+            function removeFromWishlist(propertyId) {
+                wishlist = wishlist.filter(item => item.id !== propertyId);
                 localStorage.setItem('propertyWishlist', JSON.stringify(wishlist));
                 updateHeartIcons();
-                showNotification(`₹{propertyData.name} added to wishlist!`, 'success');
-            }
-        }
-
-        function removeFromWishlist(propertyId) {
-            wishlist = wishlist.filter(item => item.id !== propertyId);
-            localStorage.setItem('propertyWishlist', JSON.stringify(wishlist));
-            updateHeartIcons();
-            showNotification(`Property removed from wishlist!`, 'info');
-        }
-
-        function showNotification(message, type) {
-            // Create notification element
-            const notification = document.createElement('div');
-            notification.className = `alert position-fixed`;
-
-            // Use brand colors instead of Bootstrap defaults
-            let bgColor, textColor;
-            if (type === 'success') {
-                bgColor = '#CC7722';
-                textColor = 'white';
-            } else {
-                bgColor = 'rgb(106, 129, 133)';
-                textColor = 'white';
+                showNotification(`Property removed from wishlist!`, 'info');
             }
 
-            notification.style.cssText = `
-                top: 20px;
-                right: 20px;
-                z-index: 9999;
-                min-width: 300px;
-                animation: slideIn 0.3s ease;
-                background-color: ₹{bgColor};
-                color: ₹{textColor};
-                border: none;
-                border-radius: 10px;
-                padding: 1rem;
-            `;
-            notification.innerHTML = `
-                <strong>₹{message}</strong>
-                <button type="button" class="btn-close" onclick="this.parentElement.remove()" style="filter: brightness(0) invert(1);"></button>
-            `;
-
-            document.body.appendChild(notification);
-
-            // Auto remove after 3 seconds
-            setTimeout(() => {
-                if (notification.parentElement) {
-                    notification.remove();
-                }
-            }, 3000);
-        }
-
-        // Add click event listeners to heart icons
-        document.addEventListener('click', function(e) {
-            if (e.target.classList.contains('heart-icon')) {
-                const propertyCard = e.target.closest('.property-item');
-                const propertyId = e.target.getAttribute('data-property-id') ||
-                                 propertyCard.querySelector('h5').textContent.replace(/\s+/g, '-').toLowerCase();
-                const propertyName = propertyCard.querySelector('h5').textContent;
-                const propertyPrice = propertyCard.querySelector('.price').textContent;
-                const propertyImage = propertyCard.querySelector('img').src;
-                const propertyLocation = propertyCard.querySelector('p').textContent;
-
-                // Set data attributes if not present
-                if (!e.target.getAttribute('data-property-id')) {
-                    e.target.setAttribute('data-property-id', propertyId);
-                    e.target.setAttribute('data-property-name', propertyName);
-                    e.target.setAttribute('data-property-price', propertyPrice);
-                }
-
-                const propertyData = {
-                    id: propertyId,
-                    name: propertyName,
-                    price: propertyPrice,
-                    image: propertyImage,
-                    location: propertyLocation
-                };
-
-                if (wishlist.some(item => item.id === propertyId)) {
-                    removeFromWishlist(propertyId);
+            function showNotification(message, type) {
+                const notification = document.createElement('div');
+                notification.className = `alert position-fixed`;
+                let bgColor, textColor;
+                if (type === 'success') {
+                    bgColor = '#CC7722';
+                    textColor = 'white';
                 } else {
-                    addToWishlist(propertyData);
+                    bgColor = 'rgb(106, 129, 133)';
+                    textColor = 'white';
+                }
+
+                notification.style.cssText = `
+                    top: 20px;
+                    right: 20px;
+                    z-index: 9999;
+                    min-width: 300px;
+                    animation: slideIn 0.3s ease;
+                    background-color: ${bgColor};
+                    color: ${textColor};
+                    border: none;
+                    border-radius: 10px;
+                    padding: 1rem;
+                `;
+                notification.innerHTML = `
+                    <strong>${message}</strong>
+                    <button type="button" class="btn-close" onclick="this.parentElement.remove()" style="filter: brightness(0) invert(1);"></button>
+                `;
+
+                document.body.appendChild(notification);
+                setTimeout(() => {
+                    if (notification.parentElement) {
+                        notification.remove();
+                    }
+                }, 3000);
+            }
+
+            // Fetch properties from Firestore and create cards
+            async function loadFirebaseProperties() {
+                try {
+                    const querySnapshot = await getDocs(collection(db, 'properties'));
+                    querySnapshot.forEach(doc => {
+                        const data = doc.data();
+                        const propertyId = doc.id;
+
+                        // Create property card
+                        const propertyCard = document.createElement('div');
+                        propertyCard.className = 'col-lg-4 col-md-6 property-item';
+                        propertyCard.setAttribute('data-type', (data.landType || 'residential').toLowerCase());
+                        propertyCard.setAttribute('data-price', data.price || 0);
+                        propertyCard.setAttribute('data-bedrooms', '0'); // Default to 0 since bedrooms not in schema
+                        propertyCard.setAttribute('data-status', 'ON SALE');
+
+                        // Format price with commas
+                        const formattedPrice = `₹${(data.price || 0).toLocaleString('en-IN')}`;
+
+                        // Construct location string
+                        const location = `${data.village || ''}, ${data.location || ''}, ${data.district || ''}`.replace(/,\s*,/g, ',').replace(/^,\s*|,,\s*$/g, '').trim() || 'Location not specified';
+
+                        propertyCard.innerHTML = `
+                            <div class="property-card">
+                                <img src="${data.imageUrl || 'https://via.placeholder.com/300x200'}" class="img-fluid" alt="${data.title || 'Property'}">
+                                <span class="badge bg-success property-badge">ON SALE</span>
+                                <span class="heart-icon" data-property-id="${propertyId}">🤍</span>
+                                <div class="property-details">
+                                    <h5>${data.title || 'Untitled Property'}</h5>
+                                    <p><i class="fa-solid fa-map-location-dot" style="margin-right: 4px; font-size: 12px; color:#CC7722;"></i>${location}</p>
+                                    <div class="price">${formattedPrice}</div>
+                                    <div class="features">
+                                        <span><i class="fa-solid fa-home"></i> ${data.landType || 'N/A'}</span>
+                                        <span><i class="fa-solid fa-road"></i> ${data.roadType || 'N/A'}</span>
+                                        <span><i class="fa-solid fa-calendar"></i> ${data.year || 'N/A'}</span>
+                                    </div>
+                                    <button class="buy-button">View Details</button>
+                                </div>
+                            </div>
+                        `;
+
+                        propertiesGrid.appendChild(propertyCard);
+                    });
+
+                    // Update propertyItems for filtering
+                    filterProperties();
+                } catch (error) {
+                    console.error('Error fetching properties from Firestore:', error);
+                    showNotification('Failed to load properties. Please try again later.', 'error');
                 }
             }
-        });
 
-        // Function to update results count
-        function updateResultsCount() {
-            const visibleProperties = document.querySelectorAll('.property-item:not([style*="display: none"])');
-            const total = propertyItems.length;
-            const visible = visibleProperties.length;
-            resultsCount.textContent = `Showing ₹{visible} of ₹{total} properties`;
-        }
+            // Load Firebase properties
+            await loadFirebaseProperties();
 
-        // Function to filter properties
-        function filterProperties() {
-            const typeValue = propertyTypeFilter.value.toLowerCase();
-            const priceValue = priceRangeFilter.value;
-            const bedroomsValue = bedroomsFilter.value;
-            const statusValue = statusFilter.value;
+            // Get all property items (including dynamic ones)
+            let propertyItems = document.querySelectorAll('.property-item');
 
-            console.log('Filtering with:', { typeValue, priceValue, bedroomsValue, statusValue });
+            // Add click event listeners to heart icons
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('heart-icon')) {
+                    const propertyCard = e.target.closest('.property-item');
+                    const propertyId = e.target.getAttribute('data-property-id') ||
+                                     propertyCard.querySelector('h5').textContent.replace(/\s+/g, '-').toLowerCase();
+                    const propertyName = propertyCard.querySelector('h5').textContent;
+                    const propertyPrice = propertyCard.querySelector('.price').textContent;
+                    const propertyImage = propertyCard.querySelector('img').src;
+                    const propertyLocation = propertyCard.querySelector('p').textContent;
 
-            propertyItems.forEach(item => {
-                let showItem = true;
+                    if (!e.target.getAttribute('data-property-id')) {
+                        e.target.setAttribute('data-property-id', propertyId);
+                        e.target.setAttribute('data-property-name', propertyName);
+                        e.target.setAttribute('data-property-price', propertyPrice);
+                    }
 
-                // Check if item has required data attributes
-                if (!item.dataset.type || !item.dataset.price || !item.dataset.bedrooms || !item.dataset.status) {
-                    console.log('Missing data attributes for item:', item);
-                    return; // Skip items without proper data attributes
+                    const propertyData = {
+                        id: propertyId,
+                        name: propertyName,
+                        price: propertyPrice,
+                        image: propertyImage,
+                        location: propertyLocation
+                    };
+
+                    if (wishlist.some(item => item.id === propertyId)) {
+                        removeFromWishlist(propertyId);
+                    } else {
+                        addToWishlist(propertyData);
+                    }
                 }
+            });
 
-                // Filter by property type
-                if (typeValue && item.dataset.type.toLowerCase() !== typeValue) {
-                    showItem = false;
-                }
+            // Function to update results count
+            function updateResultsCount() {
+                const visibleProperties = document.querySelectorAll('.property-item:not([style*="display: none"])');
+                const total = propertyItems.length;
+                const visible = visibleProperties.length;
+                resultsCount.textContent = `Showing ${visible} of ${total} properties`;
+            }
 
-                // Filter by price range
-                if (priceValue && showItem) {
-                    const itemPrice = parseInt(item.dataset.price);
-                    const [minPrice, maxPrice] = priceValue.split('-').map(p => parseInt(p));
+            // Function to filter properties
+            function filterProperties() {
+                // Refresh propertyItems to include dynamic cards
+                propertyItems = document.querySelectorAll('.property-item');
 
-                    if (itemPrice < minPrice || (maxPrice !== 999999999 && itemPrice > maxPrice)) {
+                const typeValue = propertyTypeFilter.value.toLowerCase();
+                const priceValue = priceRangeFilter.value;
+                const bedroomsValue = bedroomsFilter.value;
+                const statusValue = statusFilter.value;
+
+                propertyItems.forEach(item => {
+                    let showItem = true;
+
+                    if (!item.dataset.type || !item.dataset.price || !item.dataset.bedrooms || !item.dataset.status) {
+                        console.log('Missing data attributes for item:', item);
+                        return;
+                    }
+
+                    if (typeValue && item.dataset.type.toLowerCase() !== typeValue) {
                         showItem = false;
                     }
-                }
 
-                // Filter by bedrooms
-                if (bedroomsValue && showItem) {
-                    const itemBedrooms = parseInt(item.dataset.bedrooms);
+                    if (priceValue && showItem) {
+                        const itemPrice = parseInt(item.dataset.price);
+                        const [minPrice, maxPrice] = priceValue.split('-').map(p => parseInt(p));
 
-                    if (bedroomsValue === '1-2') {
-                        if (itemBedrooms < 1 || itemBedrooms > 2) {
-                            showItem = false;
-                        }
-                    } else if (bedroomsValue === '3-4') {
-                        if (itemBedrooms < 3 || itemBedrooms > 4) {
-                            showItem = false;
-                        }
-                    } else if (bedroomsValue === '5-6') {
-                        if (itemBedrooms < 5 || itemBedrooms > 6) {
-                            showItem = false;
-                        }
-                    } else if (bedroomsValue === '7+') {
-                        if (itemBedrooms < 7) {
+                        if (itemPrice < minPrice || (maxPrice !== 999999999 && itemPrice > maxPrice)) {
                             showItem = false;
                         }
                     }
-                }
 
-                // Filter by status
-                if (statusValue && showItem) {
-                    const itemStatus = item.dataset.status;
-                    if (itemStatus !== statusValue) {
-                        showItem = false;
+                    if (bedroomsValue && showItem) {
+                        const itemBedrooms = parseInt(item.dataset.bedrooms);
+
+                        if (bedroomsValue === '1-2') {
+                            if (itemBedrooms < 1 || itemBedrooms > 2) {
+                                showItem = false;
+                            }
+                        } else if (bedroomsValue === '3-4') {
+                            if (itemBedrooms < 3 || itemBedrooms > 4) {
+                                showItem = false;
+                            }
+                        } else if (bedroomsValue === '5-6') {
+                            if (itemBedrooms < 5 || itemBedrooms > 6) {
+                                showItem = false;
+                            }
+                        } else if (bedroomsValue === '7+') {
+                            if (itemBedrooms < 7) {
+                                showItem = false;
+                            }
+                        }
                     }
-                }
 
-                // Show or hide the item
-                if (showItem) {
+                    if (statusValue && showItem) {
+                        const itemStatus = item.dataset.status;
+                        if (itemStatus !== statusValue) {
+                            showItem = false;
+                        }
+                    }
+
+                    if (showItem) {
+                        item.style.display = 'block';
+                        item.style.animation = 'fadeIn 0.5s ease-in';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+
+                updateResultsCount();
+            }
+
+            // Function to clear all filters
+            function clearAllFilters() {
+                propertyTypeFilter.value = '';
+                priceRangeFilter.value = '';
+                bedroomsFilter.value = '';
+                statusFilter.value = '';
+
+                propertyItems.forEach(item => {
                     item.style.display = 'block';
                     item.style.animation = 'fadeIn 0.5s ease-in';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
+                });
 
+                updateResultsCount();
+            }
+
+            // Add event listeners to all filters
+            propertyTypeFilter.addEventListener('change', filterProperties);
+            priceRangeFilter.addEventListener('change', filterProperties);
+            bedroomsFilter.addEventListener('change', filterProperties);
+            statusFilter.addEventListener('change', filterProperties);
+            clearFiltersBtn.addEventListener('click', clearAllFilters);
+
+            // Initialize results count
             updateResultsCount();
-        }
 
-        // Function to clear all filters
-        function clearAllFilters() {
-            propertyTypeFilter.value = '';
-            priceRangeFilter.value = '';
-            bedroomsFilter.value = '';
-            statusFilter.value = '';
+            // Modal toggle functionality
+            const loginToggleModal = document.getElementById('loginToggleModal');
+            const signupToggleModal = document.getElementById('signupToggleModal');
+            const loginFormModal = document.getElementById('loginFormModal');
+            const signupFormModal = document.getElementById('signupFormModal');
+            const loginFooterModal = document.getElementById('loginFooterModal');
+            const signupFooterModal = document.getElementById('signupFooterModal');
+            const authModalLabel = document.getElementById('authModalLabel');
 
-            propertyItems.forEach(item => {
-                item.style.display = 'block';
-                item.style.animation = 'fadeIn 0.5s ease-in';
-            });
+            if (loginToggleModal) {
+                loginToggleModal.addEventListener('click', function() {
+                    loginToggleModal.classList.add('active');
+                    loginToggleModal.style.background = 'linear-gradient(135deg, #CC7722 0%, #e8a857 100%)';
+                    loginToggleModal.style.color = 'white';
+                    signupToggleModal.classList.remove('active');
+                    signupToggleModal.style.background = 'transparent';
+                    signupToggleModal.style.color = '#666';
+                    loginFormModal.style.display = 'block';
+                    signupFormModal.style.display = 'none';
+                    loginFooterModal.style.display = 'block';
+                    signupFooterModal.style.display = 'none';
+                    authModalLabel.textContent = 'Welcome Back';
+                });
+            }
 
-            updateResultsCount();
-        }
+            if (signupToggleModal) {
+                signupToggleModal.addEventListener('click', function() {
+                    signupToggleModal.classList.add('active');
+                    signupToggleModal.style.background = 'linear-gradient(135deg, #CC7722 0%, #e8a857 100%)';
+                    signupToggleModal.style.color = 'white';
+                    loginToggleModal.classList.remove('active');
+                    loginToggleModal.style.background = 'transparent';
+                    loginToggleModal.style.color = '#666';
+                    signupFormModal.style.display = 'block';
+                    loginFormModal.style.display = 'none';
+                    signupFooterModal.style.display = 'block';
+                    loginFooterModal.style.display = 'none';
+                    authModalLabel.textContent = 'Create Your Account';
+                });
+            }
 
-        // Add event listeners to all filters
-        propertyTypeFilter.addEventListener('change', filterProperties);
-        priceRangeFilter.addEventListener('change', filterProperties);
-        bedroomsFilter.addEventListener('change', filterProperties);
-        statusFilter.addEventListener('change', filterProperties);
-        clearFiltersBtn.addEventListener('click', clearAllFilters);
+            // Form validation and submission
+            const modalSignupForm = document.getElementById('modalSignupForm');
+            const modalLoginForm = document.getElementById('modalLoginForm');
+            const modalPassword = document.getElementById('modalPassword');
+            const modalConfirmPassword = document.getElementById('modalConfirmPassword');
 
-        // Initialize results count
-        updateResultsCount();
+            if (modalPassword && modalConfirmPassword) {
+                modalConfirmPassword.addEventListener('input', function() {
+                    if (modalPassword.value !== this.value) {
+                        this.setCustomValidity('Passwords do not match');
+                    } else {
+                        this.setCustomValidity('');
+                    }
+                });
+            }
 
-        // Modal toggle functionality
-        const loginToggleModal = document.getElementById('loginToggleModal');
-        const signupToggleModal = document.getElementById('signupToggleModal');
-        const loginFormModal = document.getElementById('loginFormModal');
-        const signupFormModal = document.getElementById('signupFormModal');
-        const loginFooterModal = document.getElementById('loginFooterModal');
-        const signupFooterModal = document.getElementById('signupFooterModal');
-        const authModalLabel = document.getElementById('authModalLabel');
+            if (modalSignupForm) {
+                modalSignupForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    showNotification('Account created successfully! (This is a demo)', 'success');
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('signupModal'));
+                    modal.hide();
+                    this.reset();
+                });
+            }
 
-        // Toggle to login
-        if (loginToggleModal) {
-            loginToggleModal.addEventListener('click', function() {
-                // Update toggle buttons
-                loginToggleModal.classList.add('active');
-                loginToggleModal.style.background = 'linear-gradient(135deg, #CC7722 0%, #e8a857 100%)';
-                loginToggleModal.style.color = 'white';
+            if (modalLoginForm) {
+                modalLoginForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    showNotification('Login successful! (This is a demo)', 'success');
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('signupModal'));
+                    modal.hide();
+                    this.reset();
+                });
+            }
 
-                signupToggleModal.classList.remove('active');
-                signupToggleModal.style.background = 'transparent';
-                signupToggleModal.style.color = '#666';
-
-                // Update forms
-                loginFormModal.style.display = 'block';
-                signupFormModal.style.display = 'none';
-
-                // Update footers
-                loginFooterModal.style.display = 'block';
-                signupFooterModal.style.display = 'none';
-
-                // Update modal title
-                authModalLabel.textContent = 'Welcome Back';
-            });
-        }
-
-        // Toggle to signup
-        if (signupToggleModal) {
-            signupToggleModal.addEventListener('click', function() {
-                // Update toggle buttons
-                signupToggleModal.classList.add('active');
-                signupToggleModal.style.background = 'linear-gradient(135deg, #CC7722 0%, #e8a857 100%)';
-                signupToggleModal.style.color = 'white';
-
-                loginToggleModal.classList.remove('active');
-                loginToggleModal.style.background = 'transparent';
-                loginToggleModal.style.color = '#666';
-
-                // Update forms
-                signupFormModal.style.display = 'block';
-                loginFormModal.style.display = 'none';
-
-                // Update footers
-                signupFooterModal.style.display = 'block';
-                loginFooterModal.style.display = 'none';
-
-                // Update modal title
-                authModalLabel.textContent = 'Create Your Account';
-            });
-        }
-
-        // Form validation and submission
-        const modalSignupForm = document.getElementById('modalSignupForm');
-        const modalLoginForm = document.getElementById('modalLoginForm');
-        const modalPassword = document.getElementById('modalPassword');
-        const modalConfirmPassword = document.getElementById('modalConfirmPassword');
-
-        // Password confirmation validation for signup
-        if (modalPassword && modalConfirmPassword) {
-            modalConfirmPassword.addEventListener('input', function() {
-                if (modalPassword.value !== this.value) {
-                    this.setCustomValidity('Passwords do not match');
-                } else {
-                    this.setCustomValidity('');
-                }
-            });
-        }
-
-        // Signup form submission
-        if (modalSignupForm) {
-            modalSignupForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                alert('Account created successfully! (This is a demo)');
-
-                // Close the modal
-                const modal = bootstrap.Modal.getInstance(document.getElementById('signupModal'));
-                modal.hide();
-
-                // Reset form
-                this.reset();
-            });
-        }
-
-        // Login form submission
-        if (modalLoginForm) {
-            modalLoginForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                alert('Login successful! (This is a demo)');
-
-                // Close the modal
-                const modal = bootstrap.Modal.getInstance(document.getElementById('signupModal'));
-                modal.hide();
-
-                // Reset form
-                this.reset();
-            });
-        }
-
-        // Reset modal to signup when opened
-        const signupModal = document.getElementById('signupModal');
-        if (signupModal) {
-            signupModal.addEventListener('show.bs.modal', function() {
-                // Reset to signup form by default
-                if (signupToggleModal) {
-                    signupToggleModal.click();
-                }
-            });
-        }
-    });
+            const signupModal = document.getElementById('signupModal');
+            if (signupModal) {
+                signupModal.addEventListener('show.bs.modal', function() {
+                    if (signupToggleModal) {
+                        signupToggleModal.click();
+                    }
+                });
+            }
+        });
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
