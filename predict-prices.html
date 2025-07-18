@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Srinagar Land Price Predictor | Professional Real Estate Analysis</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #CC7722;
+            --secondary-color: #6a8185;
+            --accent-color: #e8a857;
+            --success-color: #CC7722;
+            --warning-color: #e67e22;
+            --danger-color: #ff4757;
+            --light-bg: rgba(242, 242, 242, 1);
+            --dark-bg: #6c757d;
+            --gradient-primary: linear-gradient(135deg, #CC7722 0%, #e8a857 100%);
+            --gradient-secondary: linear-gradient(135deg, #6a8185 0%, #d0d7de 100%);
+            --gradient-accent: linear-gradient(135deg, #e8a857 0%, #CC7722 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: rgba(242, 242, 242, 0.4);
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .main-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+            border: 1px solid #d0d7de;
+        }
+
+        .header-section {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header-section h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .header-section p {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .prediction-form {
+            padding: 40px;
+            background: var(--light-bg);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #6c757d;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .form-select, .form-control {
+            border: 2px solid #d0d7de;
+            border-radius: 8px;
+            padding: 12px 15px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .form-select:focus, .form-control:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 0.2rem rgba(204, 119, 34, 0.25);
+            outline: none;
+        }
+
+        .btn-predict {
+            background: var(--gradient-accent);
+            border: none;
+            border-radius: 12px;
+            padding: 16px 40px;
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(204, 119, 34, 0.3);
+        }
+
+        .btn-predict:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(204, 119, 34, 0.4);
+            color: white;
+        }
+
+        .results-section {
+            padding: 40px;
+            display: none;
+        }
+
+        .stat-card {
+            background: rgba(248, 249, 250, 0.95);
+            color: #6c757d;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(106, 129, 133, 0.1);
+            transition: transform 0.3s ease;
+            margin-bottom: 20px;
+            border: 1px solid #d0d7de;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-card h5 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .stat-card h3 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #CC7722;
+        }
+
+        .chart-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border: 1px solid #d0d7de;
+        }
+
+        .loading-spinner {
+            text-align: center;
+            padding: 60px;
+            display: none;
+        }
+
+        .alert {
+            border-radius: 8px;
+            border: none;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+        }
+
+        .alert-success {
+            background: rgba(204, 119, 34, 0.1);
+            color: var(--success-color);
+            border-left: 4px solid var(--success-color);
+        }
+
+        .alert-danger {
+            background: rgba(255, 71, 87, 0.1);
+            color: var(--danger-color);
+            border-left: 4px solid var(--danger-color);
+        }
+
+        .price-card {
+            background: var(--gradient-accent);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 15px 0;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(204, 119, 34, 0.2);
+        }
+
+        .price-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(204, 119, 34, 0.3);
+        }
+
+        .analytics-card {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 15px 0;
+            box-shadow: 0 4px 15px rgba(204, 119, 34, 0.2);
+        }
+
+        .recommendations-section {
+            background: var(--gradient-accent);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                margin: 10px;
+                border-radius: 10px;
+            }
+            
+            .header-section {
+                padding: 30px 20px;
+            }
+            
+            .header-section h1 {
+                font-size: 2rem;
+            }
+            
+            .prediction-form {
+                padding: 20px;
+            }
+            
+            .results-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <!-- Header Section -->
+        <div class="header-section">
+            <div class="header-content">
+                <h1><i class="fas fa-chart-line"></i> Srinagar Land Price Predictor</h1>
+                <p class="mb-3">Professional real estate price analysis for Srinagar district</p>
+                <p class="small opacity-75">Advanced analytics for informed investment decisions</p>
+            </div>
+        </div>
+
+        <!-- Prediction Form -->
+        <div class="prediction-form">
+            <h3 class="mb-4"><i class="fas fa-calculator"></i> Property Price Analysis</h3>
+            
+            <form id="predictionForm">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="form-label"><i class="fas fa-map"></i> District</label>
+                            <select class="form-select" id="districtSelect" required>
+                                <option value="srinagar" selected>Srinagar</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="form-label"><i class="fas fa-map-marker-alt"></i> Village</label>
+                            <select class="form-select" id="villageSelect" required>
+                                <option value="">Select Village</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="form-label"><i class="fas fa-location-dot"></i> Location</label>
+                            <select class="form-select" id="locationSelect" required disabled>
+                                <option value="">Select Location</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="form-label"><i class="fas fa-building"></i> Property Type</label>
+                            <select class="form-select" id="propertyTypeSelect" required>
+                                <option value="">Select Type</option>
+                                <option value="residential">Residential</option>
+                                <option value="commercial">Commercial</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="form-label"><i class="fas fa-road"></i> Road Type</label>
+                            <select class="form-select" id="roadTypeSelect" required>
+                                <option value="">Select Road Type</option>
+                                <option value="front side road">Front Side Road</option>
+                                <option value="inner side road">Inner Side Road</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="form-label"><i class="fas fa-calendar-alt"></i> Start Year</label>
+                            <select class="form-select" id="startYearSelect" required>
+                                <option value="">Start Year</option>
+                                <option value="2026">2026</option>
+                                <option value="2027">2027</option>
+                                <option value="2028">2028</option>
+                                <option value="2029">2029</option>
+                                <option value="2030">2030</option>
+                                <option value="2031">2031</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label class="form-label"><i class="fas fa-calendar-check"></i> End Year</label>
+                            <select class="form-select" id="endYearSelect" required>
+                                <option value="">End Year</option>
+                                <option value="2026">2026</option>
+                                <option value="2027">2027</option>
+                                <option value="2028">2028</option>
+                                <option value="2029">2029</option>
+                                <option value="2030">2030</option>
+                                <option value="2031">2031</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-predict btn-lg">
+                        <i class="fas fa-chart-line"></i> Generate Price Analysis
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Messages -->
+        <div id="messageContainer" class="px-4"></div>
+
+        <!-- Loading Spinner -->
+        <div class="loading-spinner" id="loadingSpinner">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="mt-3"><strong>Analyzing market data...</strong></p>
+            <small>Please wait while we process your request</small>
+        </div>
+
+        <!-- Results Section -->
+        <div class="results-section" id="resultsSection">
+            <h3 class="mb-4"><i class="fas fa-chart-bar"></i> Price Analysis Results</h3>
+            
+            <!-- Statistics Grid -->
+            <div class="row" id="statisticsGrid">
+                <!-- Statistics cards will be populated here -->
+            </div>
+            
+            <!-- Price Cards -->
+            <div class="row" id="priceCards">
+                <!-- Price cards will be populated here -->
+            </div>
+            
+            <!-- Chart Container -->
+            <div class="chart-container">
+                <h4><i class="fas fa-line-chart"></i> Price Trend Analysis</h4>
+                <canvas id="priceChart" width="400" height="200"></canvas>
+            </div>
+            
+            <!-- Analytics Section -->
+            <div class="analytics-card" id="analyticsSection">
+                <!-- Analytics will be populated here -->
+            </div>
+            
+            <!-- Recommendations Section -->
+            <div class="recommendations-section" id="recommendationsSection">
+                <!-- Recommendations will be populated here -->
+            </div>
+            
+            <!-- Model Information -->
+            <div class="mt-4 p-3 bg-light rounded">
+                <div id="modelInfo" class="text-muted small">
+                    <!-- Model information will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Application JavaScript -->
+    <script>
+        // Global variables
+        const API_BASE = 'http://127.0.0.1:5000/api';
+        let priceChart = null;
+
+        // Initialize application
+        document.addEventListener('DOMContentLoaded', function() {
+            loadVillages();
+            setupEventListeners();
+        });
+
+        // Load villages from API
+        async function loadVillages() {
+            try {
+                const response = await fetch(`${API_BASE}/villages`);
+                const data = await response.json();
+
+                if (data.success) {
+                    const villageSelect = document.getElementById('villageSelect');
+                    villageSelect.innerHTML = '<option value="">Select Village</option>';
+
+                    data.villages.forEach(village => {
+                        const option = document.createElement('option');
+                        option.value = village;
+                        option.textContent = capitalizeWords(village);
+                        villageSelect.appendChild(option);
+                    });
+
+                    if (data.model_status === 'enhanced_with_year_learning') {
+                        showMessage('Analysis system ready!', 'success');
+                    }
+                } else {
+                    showMessage('Failed to load villages: ' + data.error, 'error');
+                }
+            } catch (error) {
+                showMessage('Error connecting to server. Please ensure the API server is running at http://127.0.0.1:5000', 'error');
+            }
+        }
+
+        // Load locations for selected village
+        async function loadLocations(village) {
+            try {
+                const response = await fetch(`${API_BASE}/locations/${village}`);
+                const data = await response.json();
+
+                const locationSelect = document.getElementById('locationSelect');
+
+                if (data.success) {
+                    locationSelect.innerHTML = '<option value="">Select Location</option>';
+
+                    data.locations.forEach(location => {
+                        const option = document.createElement('option');
+                        option.value = location;
+                        option.textContent = capitalizeWords(location);
+                        locationSelect.appendChild(option);
+                    });
+
+                    locationSelect.disabled = false;
+                } else {
+                    locationSelect.innerHTML = '<option value="">No locations found</option>';
+                    locationSelect.disabled = true;
+                }
+            } catch (error) {
+                const locationSelect = document.getElementById('locationSelect');
+                locationSelect.innerHTML = '<option value="">Error loading locations</option>';
+                locationSelect.disabled = true;
+            }
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Village selection change
+            document.getElementById('villageSelect').addEventListener('change', function(e) {
+                const village = e.target.value;
+                if (village) {
+                    loadLocations(village);
+                } else {
+                    const locationSelect = document.getElementById('locationSelect');
+                    locationSelect.innerHTML = '<option value="">Select Location</option>';
+                    locationSelect.disabled = true;
+                }
+            });
+
+            // Form submission
+            document.getElementById('predictionForm').addEventListener('submit', handlePrediction);
+        }
+
+        // Handle prediction form submission
+        async function handlePrediction(event) {
+            event.preventDefault();
+
+            // Collect form data
+            const formData = {
+                village: document.getElementById('villageSelect').value,
+                location: document.getElementById('locationSelect').value,
+                property_type: document.getElementById('propertyTypeSelect').value,
+                road_type: document.getElementById('roadTypeSelect').value,
+                start_year: parseInt(document.getElementById('startYearSelect').value),
+                end_year: parseInt(document.getElementById('endYearSelect').value)
+            };
+
+            // Validate form
+            if (!validateForm(formData)) {
+                return;
+            }
+
+            // Show loading
+            showLoading(true);
+            hideMessages();
+
+            try {
+                const response = await fetch(`${API_BASE}/predict`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    displayResults(data);
+                    showMessage('Price analysis completed successfully!', 'success');
+                } else {
+                    showMessage(data.error || 'Failed to generate predictions', 'error');
+                }
+            } catch (error) {
+                showMessage('Network error. Please check your connection and ensure the API server is running.', 'error');
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        // Validate form data
+        function validateForm(formData) {
+            const requiredFields = ['village', 'location', 'property_type', 'road_type', 'start_year', 'end_year'];
+
+            for (const field of requiredFields) {
+                if (!formData[field]) {
+                    showMessage(`Please select ${field.replace('_', ' ')}`, 'error');
+                    return false;
+                }
+            }
+
+            if (formData.start_year > formData.end_year) {
+                showMessage('Start year must be less than or equal to end year', 'error');
+                return false;
+            }
+
+            return true;
+        }
+
+        // Display prediction results
+        function displayResults(data) {
+            // Show results section
+            document.getElementById('resultsSection').style.display = 'block';
+
+            // Display statistics
+            displayStatistics(data.statistics);
+
+            // Display price cards
+            displayPriceCards(data.predictions);
+
+            // Display analytics
+            if (data.analytics) {
+                displayAnalytics(data.analytics);
+            }
+
+            // Display chart
+            displayChart(data.analytics ? data.analytics.price_trend : {
+                years: Object.keys(data.predictions),
+                prices: Object.values(data.predictions)
+            });
+
+            // Display model info
+            displayModelInfo(data.model_info);
+
+            // Scroll to results
+            document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Display statistics cards
+        function displayStatistics(stats) {
+            const statisticsGrid = document.getElementById('statisticsGrid');
+            statisticsGrid.innerHTML = `
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <h5><i class="fas fa-arrow-down"></i> Minimum Price</h5>
+                        <h3>₹${stats.min_price} Lakhs</h3>
+                        <small>Lowest predicted value</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <h5><i class="fas fa-arrow-up"></i> Maximum Price</h5>
+                        <h3>₹${stats.max_price} Lakhs</h3>
+                        <small>Highest predicted value</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <h5><i class="fas fa-chart-bar"></i> Average Price</h5>
+                        <h3>₹${stats.avg_price} Lakhs</h3>
+                        <small>Mean predicted value</small>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <h5><i class="fas fa-exchange-alt"></i> Price Range</h5>
+                        <h3>₹${stats.price_range} Lakhs</h3>
+                        <small>Variation in prices</small>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Display price cards
+        function displayPriceCards(predictions) {
+            const priceCards = document.getElementById('priceCards');
+            priceCards.innerHTML = '';
+
+            Object.entries(predictions).forEach(([year, price]) => {
+                const card = document.createElement('div');
+                card.className = 'col-md-4 col-sm-6 mb-3';
+                card.innerHTML = `
+                    <div class="price-card">
+                        <h5><i class="fas fa-calendar"></i> ${year}</h5>
+                        <h3>₹${price} Lakhs</h3>
+                        <p>₹${(price * 100000).toLocaleString('en-IN')}</p>
+                        <small>Predicted Value</small>
+                    </div>
+                `;
+                priceCards.appendChild(card);
+            });
+        }
+
+        // Display analytics
+        function displayAnalytics(analytics) {
+            const analyticsSection = document.getElementById('analyticsSection');
+            analyticsSection.innerHTML = `
+                <h4><i class="fas fa-chart-line"></i> Investment Analytics</h4>
+                <div class="row">
+                    <div class="col-md-4">
+                        <h6>Total Growth</h6>
+                        <h4>${analytics.price_trend.total_growth}%</h4>
+                    </div>
+                    <div class="col-md-4">
+                        <h6>Annual Growth</h6>
+                        <h4>${analytics.price_trend.avg_annual_growth}%</h4>
+                    </div>
+                    <div class="col-md-4">
+                        <h6>Investment Grade</h6>
+                        <h4>${analytics.investment_insights.investment_grade}</h4>
+                    </div>
+                </div>
+            `;
+
+            // Display recommendations
+            const recommendationsSection = document.getElementById('recommendationsSection');
+            recommendationsSection.innerHTML = `
+                <h4><i class="fas fa-lightbulb"></i> Investment Recommendations</h4>
+                <ul class="list-unstyled">
+                    ${analytics.recommendations.map(rec => `<li><i class="fas fa-check-circle"></i> ${rec}</li>`).join('')}
+                </ul>
+            `;
+        }
+
+        // Display price trend chart
+        function displayChart(trendData) {
+            const ctx = document.getElementById('priceChart').getContext('2d');
+
+            // Destroy existing chart
+            if (priceChart) {
+                priceChart.destroy();
+            }
+
+            priceChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: trendData.years,
+                    datasets: [{
+                        label: 'Predicted Price (₹ Lakhs)',
+                        data: trendData.prices,
+                        borderColor: '#CC7722',
+                        backgroundColor: 'rgba(204, 119, 34, 0.1)',
+                        borderWidth: 4,
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: '#CC7722',
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 3,
+                        pointRadius: 8,
+                        pointHoverRadius: 12
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Future Price Trend Analysis',
+                            font: {
+                                size: 18,
+                                weight: 'bold'
+                            }
+                        },
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            title: {
+                                display: true,
+                                text: 'Price (₹ Lakhs)',
+                                font: {
+                                    size: 14,
+                                    weight: 'bold'
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(0,0,0,0.1)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Year',
+                                font: {
+                                    size: 14,
+                                    weight: 'bold'
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(0,0,0,0.1)'
+                            }
+                        }
+                    },
+                    elements: {
+                        point: {
+                            hoverRadius: 12
+                        }
+                    }
+                }
+            });
+        }
+
+        // Display model information
+        function displayModelInfo(modelInfo) {
+            const modelInfoDiv = document.getElementById('modelInfo');
+            modelInfoDiv.innerHTML = `
+                <strong><i class="fas fa-chart-line"></i> Analysis System</strong> |
+                <strong>Last Updated:</strong> ${modelInfo.last_updated}
+            `;
+        }
+
+        // Utility functions
+        function capitalizeWords(str) {
+            return str.split(' ').map(word =>
+                word.charAt(0).toUpperCase() + word.slice(1)
+            ).join(' ');
+        }
+
+        function showLoading(show) {
+            document.getElementById('loadingSpinner').style.display = show ? 'block' : 'none';
+        }
+
+        function showMessage(message, type) {
+            const messageContainer = document.getElementById('messageContainer');
+            const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
+            const icon = type === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-triangle';
+
+            messageContainer.innerHTML = `
+                <div class="alert ${alertClass}" role="alert">
+                    <i class="${icon}"></i> ${message}
+                </div>
+            `;
+
+            // Auto-hide success messages after 5 seconds
+            if (type === 'success') {
+                setTimeout(() => {
+                    hideMessages();
+                }, 5000);
+            }
+        }
+
+        function hideMessages() {
+            document.getElementById('messageContainer').innerHTML = '';
+        }
+    </script>
+</body>
+</html>
