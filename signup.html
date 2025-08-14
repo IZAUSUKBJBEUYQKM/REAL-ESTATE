@@ -206,8 +206,7 @@
                                     <option value="" disabled selected>Select account type</option>
                                     <option value="buyer">Property Buyer</option>
                                     <option value="seller">Property Seller</option>
-                                    <option value="agent">Real Estate Agent</option>
-                                    <option value="both">Buyer & Seller</option>
+                                  
                                 </select>
                             </div>
                         </div>
@@ -308,7 +307,7 @@
                     firstName: userData.firstName,
                     lastName: userData.lastName,
                     email: userData.email,
-                    phone: userData.phone,
+                    phoneNumber: userData.phone,
                     userType: userData.userType,
                     createdAt: firebase.firestore.FieldValue.serverTimestamp(),
                     lastLoginAt: firebase.firestore.FieldValue.serverTimestamp()
